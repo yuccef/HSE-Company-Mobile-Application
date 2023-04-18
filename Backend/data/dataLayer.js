@@ -1,6 +1,6 @@
 const fs = require("fs");
 const fichier = "./data/auth.json"; 
-
+const fichier1 = "./data/signin.json"; 
 
 
 
@@ -19,6 +19,18 @@ let dataLayer = {
             if(err) throw err;
             
             console.log("Utilisateur ajouté");
+        });
+    },
+    addUser1: function (data){
+        const users = fs.readFileSync(fichier1); 
+        const tab= JSON.parse(users);
+        tab.push(data);
+        var newdata = JSON.stringify(tab);
+        fs.writeFile("./data/signin.json", newdata, err => {
+            // error checking
+            if(err) throw err;
+            
+            console.log("Nouveau Utilisateur ajouté");
         });
     },
 }
