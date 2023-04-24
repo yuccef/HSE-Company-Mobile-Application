@@ -3,8 +3,8 @@ const app = express();
 const fs = require('fs');
 const cors = require('cors');
 const business = require("../business/business");
-const data1 = fs.readFileSync('./data/signin.json');
-const data = fs.readFileSync('./data/auth.json');
+const data1 = fs.readFileSync('./Backend/data/signin.json');
+const data = fs.readFileSync('./Backend/data/auth.json');
 const customers = JSON.parse(data);
 const customers1 = JSON.parse(data1);
 
@@ -25,6 +25,9 @@ const apiServ = {
           });
           app.post('/api/customers/sign', (req, res) => {
             business.AddUser1(req.body);
+            res.json(req.body);
+          });
+          app.post('/api/customers', (req, res) => {
             res.json(req.body);
           });
          
