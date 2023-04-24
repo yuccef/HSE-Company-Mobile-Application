@@ -1,6 +1,5 @@
 const fs = require("fs");
-const fichier = "./Backend/data/auth.json"; 
-const fichier1 = "./Backend/data/signin.json"; 
+const fichier = "./Backend/data/signin.json"; 
 
 
 
@@ -14,24 +13,13 @@ let dataLayer = {
         const tab= JSON.parse(users);
         tab.push(data);
         var newdata = JSON.stringify(tab);
-        fs.writeFile("./Backend/data/auth.json", newdata, err => {
+        fs.writeFile("./Backend/data/signin.json", newdata, err => {
             // error checking
             if(err) throw err;
             
             console.log("Utilisateur ajouté");
         });
     },
-    addUser1: function (data){
-        const users = fs.readFileSync(fichier1); 
-        const tab= JSON.parse(users);
-        tab.push(data);
-        var newdata = JSON.stringify(tab);
-        fs.writeFile("./Backend/data/signin.json", newdata, err => {
-            // error checking
-            if(err) throw err;
-            
-            console.log("Nouveau Utilisateur ajouté");
-        });
-    },
+
 }
 module.exports =dataLayer;
