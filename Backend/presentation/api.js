@@ -17,7 +17,7 @@ const apiServ = {
             origin: '*'
         }));
         app.get('/api/customers', (req, res) => {
-            res.json(customers);
+            res.json(customers1);
           });
           
           app.get('/api/customers/sign', (req, res) => {
