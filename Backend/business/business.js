@@ -1,10 +1,11 @@
-const dataL = require("../data/dataLayer");
+const dataL = require("../data/dataLayer"); /** Pick up methods from dataLayer */
 
 
 const business = {
+    
 
+    /**To Add a user */
     AddUser :function(data)  {
-        //console.log("AddUser");
         console.log(data);
         return dataL.addUser(data);
     },

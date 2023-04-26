@@ -7,7 +7,7 @@ const fichier = "./Backend/data/signin.json";
 /**dataLayer is a class that contains several methods for database manipulation */
 let dataLayer = {
 
-/**method to add new user in the data base  */
+    /**method to add new user in the data base  */
     addUser: function (data){
         const users = fs.readFileSync(fichier); 
         const tab= JSON.parse(users);
@@ -22,4 +22,6 @@ let dataLayer = {
     },
 
 }
+
+/**export the class to use it on other files */
 module.exports =dataLayer;
