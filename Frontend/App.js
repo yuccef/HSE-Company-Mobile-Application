@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, TextInput, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { styles } from './style';
+import { styles } from './stuff/src/style';
 
 const Stack = createNativeStackNavigator();
 
