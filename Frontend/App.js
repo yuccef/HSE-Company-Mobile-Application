@@ -5,6 +5,7 @@ import { SafeAreaView, View, Text, Image, ScrollView, TextInput, Button, Alert }
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from './stuff/src/style';
+ 
 
 const Stack = createNativeStackNavigator();
 
