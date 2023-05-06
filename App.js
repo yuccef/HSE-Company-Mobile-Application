@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Mycamera} from './MyApp/Screens/Camera' ;
 import MyTabs from './MyApp/MyTabs';
 import LoginScreen from './MyApp/Screens/LoginScreen';
+import LoginAdminScreen from './MyApp/Screens/LoginAdminScreen';
 import {styles} from './MyApp/Styles';
 import chose from './MyApp/Screens/chose'
 
@@ -15,6 +16,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" >
       <Stack.Screen name="Chose" component={chose} />
+       <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
         <Stack.Screen name="Signaler un risque" component={Mycamera} />

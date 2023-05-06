@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function ChoseScreen({ navigation }) {
   const handleAdminPress = () => {
-    navigation.navigate('Login', { userType: 'admin' });
+    navigation.navigate('LoginAdmin', { userType: 'admin' });
   };
 
   const handleWorkerPress = () => {
