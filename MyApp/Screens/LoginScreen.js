@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, TextInput, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { styles } from './stuff/src/style';
- 
+import { styles } from '../style';
+import MyTabs from '../MyTabs';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -13,8 +14,8 @@ const Stack = createNativeStackNavigator();
 
 
 /**URLs of Databases */
-const API_URL = "https://81c4-91-205-43-234.ngrok-free.app/api/customers";
-const API_URL2 = "https://81c4-91-205-43-234.ngrok-free.app/api/customers/sign";
+const API_URL = "https://2dd5-91-205-43-204.ngrok-free.app/api/customers";
+const API_URL2 = "https://2dd5-91-205-43-204.ngrok-free.app/api/customers/sign";
 
 
 
@@ -74,12 +75,14 @@ const LoginScreen = ({ navigation }) => {
        
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
-        navigation.navigate('Page2', { name: foundUser.nom });
-      }
+        navigation.navigate('MyTabs')
+            }
       /**if not return Alert*/
       else {
         Alert.alert(ERROR_MESSAGES.LOGIN);
       }
+      console.log(foundUser);
+
       return foundUser;
 
 
@@ -250,8 +253,7 @@ const handleSubmit = async () => {
           /**if DONE navigate to page 2 */
           if (createdUser) {
             Alert.alert("Inscription réussie !");
-            navigation.navigate('Page2', { name: createdUser.nom });
-
+            navigation.navigate('MyTabs')
           /**if  note ERROR*/
           } else {
             console.warn("Erreur lors de l'inscription.");
@@ -312,47 +314,24 @@ onPress={() => navigation.goBack()}
 };
 
 
-/**Page2Screen is the next page after Authentification  */
 
-const Page2Screen = ({ navigation, route }) => {
-return (
-<View style={styles.container}>
-<Text>Bienvenue, {route.params.name} !</Text>
 
-<Button
-/**Juste go back */
-title="Se déconnecter"
-onPress={() => navigation.goBack()}
-/>
-</View>
-);
-};
 
 
 
 /**main Class (SCREENS) */
-const App = () => {
-return (
-<NavigationContainer>
-<Stack.Navigator>
-<Stack.Screen
-name="Connexion"
-component={LoginScreen}
-options={{ title: 'Connexion' }}
-/>
-<Stack.Screen
-name="Inscription"
-component={InscriptionScreen}
-options={{ title: 'Inscription' }}
-/>
-<Stack.Screen
-name="Page2"
-component={Page2Screen}
-options={{ title: 'Page 2' }}
-/>
-</Stack.Navigator>
-</NavigationContainer>
-);
-};
+
+
+function App() {
+  return (
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Inscription" component={InscriptionScreen} />
+        <Stack.Screen name="MyTabs" component={MyTabs} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 export default App;
