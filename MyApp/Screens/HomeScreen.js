@@ -1,6 +1,6 @@
 import {  Text, View, } from 'react-native';
 import {styles} from '../Styles'
-import {Mycamera} from './Camera'
+import {Mycamera} from '../Report/Report'
 import button_risk from '../button_risk';
 
 
@@ -12,3 +12,5 @@ export default function HomeScreen({navigation}) {
       </View>
     );
   }
+
+  
