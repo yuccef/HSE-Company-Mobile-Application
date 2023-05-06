@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const fs = require('fs');
 const cors = require('cors');
-const business = require("../business/business");
-const data = fs.readFileSync('./Backend/data/signin.json');
+const business = require("../workerBackEnd/businesWorker/business");
+const data = fs.readFileSync('./Backend/workerBackEnd/dataWorker/signin.json');
 const customers = JSON.parse(data);
-const businesAdmin = require("../businessAdmin/business");
-const dataAdmin = fs.readFileSync('./Backend/dataAdmin/signin.json');
+const businesAdmin = require("../adminBackEnd/businessAdmin/business");
+const dataAdmin = fs.readFileSync('./Backend/adminBackEnd/dataAdmin/signin.json');
 const Admins = JSON.parse(dataAdmin);
 
 
@@ -28,7 +28,7 @@ const apiServ = {
 
         /**Create a route to Get Database with all the Information of the people registered */
          app.get('/api/customers', (req, res) => {
-            fs.readFile('./Backend/data/signin.json', (err, data) => {
+            fs.readFile('./Backend/workerBackEnd/dataWorker/signin.json', (err, data) => {
             if (err) {
               console.error(err);
               return res.sendStatus(500);
@@ -42,7 +42,7 @@ const apiServ = {
           /**the POST option is for Adding data in the server */
           app.post('/api/customers', (req, res) => {
               business.AddUser(req.body);
-              fs.readFile('./Backend/data/signin.json', (err) => {
+              fs.readFile('./Backend/workerBackEnd/dataWorker/signin.json', (err) => {
               if (err) {
                 res.status(500).send('Erreur lors de la lecture du fichier customers.json');
               } else {
@@ -56,7 +56,7 @@ const apiServ = {
 
         /**Create a route to Get Database with all the Information of the people registered */
         app.get('/api/customers/sign', (req, res) => {
-           fs.readFile('./Backend/data/signin.json', (err, data) => {
+           fs.readFile('./Backend/workerBackEnd/dataWorker/signin.json', (err, data) => {
            if (err) {
            console.error(err);
            return res.sendStatus(500);
@@ -70,7 +70,7 @@ const apiServ = {
           /**the POST option is for Adding data in the server */
          app.post('/api/customers/sign', (req, res) => {
             business.AddUser(req.body);
-            fs.readFile('./Backend/data/signin.json', (err) => {
+            fs.readFile('./Backend/workerBackEnd/dataWorker/signin.json', (err) => {
             if (err) {
                res.status(500).send('Erreur lors de la lecture du fichier customers.json');
             } else {
@@ -83,7 +83,7 @@ const apiServ = {
 
           /**Create a route to Get Database with all the Information of the people registered */
           app.get('/api/admin', (req, res) => {
-            fs.readFile('./Backend/dataAdmin/signin.json', (err, data) => {
+            fs.readFile('./Backend/adminBackEnd/dataAdmin/signin.json', (err, data) => {
             if (err) {
               console.error(err);
               return res.sendStatus(500);
@@ -97,7 +97,7 @@ const apiServ = {
           /**the POST option is for Adding data in the server */
           app.post('/api/admin', (req, res) => {
               businesAdmin.AddUser(req.body);
-              fs.readFile('./Backend/dataAdmin/signin.json', (err) => {
+              fs.readFile('./Backend/adminBackEnd/dataAdmin/signin.json', (err) => {
               if (err) {
                 res.status(500).send('Erreur lors de la lecture du fichier customers.json');
               } else {
@@ -111,7 +111,7 @@ const apiServ = {
 
         /**Create a route to Get Database with all the Information of the people registered */
         app.get('/api/admin/sign', (req, res) => {
-           fs.readFile('./Backend/dataAdmin/signin.json', (err, data) => {
+           fs.readFile('./Backend/adminBackEnd/dataAdmin/signin.json', (err, data) => {
            if (err) {
            console.error(err);
            return res.sendStatus(500);
@@ -125,7 +125,7 @@ const apiServ = {
           /**the POST option is for Adding data in the server */
          app.post('/api/admin/sign', (req, res) => {
             businesAdmin.AddUser(req.body);
-            fs.readFile('./Backend/dataAdmin/signin.json', (err) => {
+            fs.readFile('./Backend/adminBackEnd/dataAdmin/signin.json', (err) => {
             if (err) {
                res.status(500).send('Erreur lors de la lecture du fichier customers.json');
             } else {
