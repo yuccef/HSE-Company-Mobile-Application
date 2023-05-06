@@ -13,7 +13,6 @@ import Mycamera from './Screens/Camera';
 
 const Tab = createBottomTabNavigator();
 
-
 export default function MyTabs() {
   return (
     <Tab.Navigator>
@@ -58,3 +57,6 @@ export default function MyTabs() {
 
   );
 }
+MyTabs.options = {
+  headerShown: false
+};

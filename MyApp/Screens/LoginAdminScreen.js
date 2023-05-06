@@ -161,6 +161,9 @@ const LoginScreen = ({ navigation }) => {
     </View>
   );
 };
+LoginScreen.options = {
+  headerShown: false
+};
 
 
 /**InscriptionScreen  Class where we do our inscription  */
@@ -313,7 +316,9 @@ onPress={() => navigation.goBack()}
 );
 };
 
-
+InscriptionScreen.options = {
+  headerShown: false
+};
 
 
 

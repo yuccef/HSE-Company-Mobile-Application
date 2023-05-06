@@ -46,6 +46,9 @@ export default function HSE() {
       );
     
   }
+  HSE.options = {
+    headerShown: false
+  };
 
   
 

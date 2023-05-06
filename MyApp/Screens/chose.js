@@ -22,6 +22,9 @@ export default function ChoseScreen({ navigation }) {
     </View>
   );
 }
+ChoseScreen.options = {
+    headerShown: false
+  };
 
 const styles = StyleSheet.create({
   container: {

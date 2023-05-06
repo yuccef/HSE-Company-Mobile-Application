@@ -12,5 +12,8 @@ export default function HomeScreen({navigation}) {
       </View>
     );
   }
+  HomeScreen.options = {
+    headerShown: false
+  };
 
   
