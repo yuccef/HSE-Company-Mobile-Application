@@ -5,7 +5,9 @@ const cors = require('cors');
 const business = require("../business/business");
 const data = fs.readFileSync('./Backend/data/signin.json');
 const customers = JSON.parse(data);
-
+const businesAdmin = require("../businessAdmin/business");
+const dataAdmin = fs.readFileSync('./Backend/dataAdmin/signin.json');
+const Admins = JSON.parse(dataAdmin);
 
 
 
@@ -79,6 +81,60 @@ const apiServ = {
 
           
 
+          /**Create a route to Get Database with all the Information of the people registered */
+          app.get('/api/admin', (req, res) => {
+            fs.readFile('./Backend/dataAdmin/signin.json', (err, data) => {
+            if (err) {
+              console.error(err);
+              return res.sendStatus(500);
+            }
+            res.json(JSON.parse(data));
+             });
+           });
+
+                    
+          /**Create a route for Adding a user */
+          /**the POST option is for Adding data in the server */
+          app.post('/api/admin', (req, res) => {
+              businesAdmin.AddUser(req.body);
+              fs.readFile('./Backend/dataAdmin/signin.json', (err) => {
+              if (err) {
+                res.status(500).send('Erreur lors de la lecture du fichier customers.json');
+              } else {
+                res.json(Admins);
+                }
+              });            
+            });
+
+
+       
+
+        /**Create a route to Get Database with all the Information of the people registered */
+        app.get('/api/admin/sign', (req, res) => {
+           fs.readFile('./Backend/dataAdmin/signin.json', (err, data) => {
+           if (err) {
+           console.error(err);
+           return res.sendStatus(500);
+              }
+            res.json(JSON.parse(data));
+          });
+        });    
+
+
+         /**Create a route for Adding a user */
+          /**the POST option is for Adding data in the server */
+         app.post('/api/admin/sign', (req, res) => {
+            businesAdmin.AddUser(req.body);
+            fs.readFile('./Backend/dataAdmin/signin.json', (err) => {
+            if (err) {
+               res.status(500).send('Erreur lors de la lecture du fichier customers.json');
+            } else {
+               res.json(Admins);
+              }
+           });            
+         });
+
+          
 
 
 
