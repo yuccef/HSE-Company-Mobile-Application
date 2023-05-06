@@ -1,5 +1,5 @@
 const fs = require("fs");
-const fichier = "./workerBackEnd/dataWorker/signin.json"; 
+const fichier = "./Backend/workerBackEnd/dataWorker/signin.json"; 
 
 
 
@@ -13,7 +13,7 @@ let dataLayer = {
         const tab= JSON.parse(users);
         tab.push(data);
         var newdata = JSON.stringify(tab);
-        fs.writeFile("./workerBackEnd/dataWorker/signin.json", newdata, err => {
+        fs.writeFile("./Backend/workerBackEnd/dataWorker/signin.json", newdata, err => {
             // error checking
             if(err) throw err;
             

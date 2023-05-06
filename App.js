@@ -6,7 +6,6 @@ import {Mycamera} from './MyApp/Screens/Camera' ;
 import MyTabs from './MyApp/MyTabs';
 import LoginScreen from './MyApp/Screens/LoginScreen';
 import LoginAdminScreen from './MyApp/Screens/LoginAdminScreen';
-import {styles} from './MyApp/Styles';
 import chose from './MyApp/Screens/chose'
 
 const Stack = createNativeStackNavigator();

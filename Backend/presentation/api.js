@@ -24,7 +24,9 @@ const apiServ = {
           origin: '*'
       }));
 
-      
+      ///////////////////////// FOR WORKERS ////////////////////////////////
+
+
 
         /**Create a route to Get Database with all the Information of the people registered */
          app.get('/api/customers', (req, res) => {
@@ -81,6 +83,11 @@ const apiServ = {
 
           
 
+
+        ///////////////////////// FOR ADMINS ////////////////////////////////
+
+
+
           /**Create a route to Get Database with all the Information of the people registered */
           app.get('/api/admin', (req, res) => {
             fs.readFile('./Backend/adminBackEnd/dataAdmin/signin.json', (err, data) => {
@@ -134,7 +141,11 @@ const apiServ = {
            });            
          });
 
-          
+        
+
+        
+         ///////////////////////// FOR PICTURES ////////////////////////////////
+
 
 
 
