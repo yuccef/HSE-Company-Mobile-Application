@@ -1,6 +1,4 @@
 const apiServ= require("./Backend/presentation/api");
-const express = require('express');
-const app = express();
 const port =3001;
 
 
