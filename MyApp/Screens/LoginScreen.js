@@ -10,12 +10,13 @@ import MyTabs from '../MyTabs';
 
 const Stack = createNativeStackNavigator();
 
-
+let nomm;
 
 
 /**URLs of Databases */
 const API_URL = "https://60c5-91-205-43-215.ngrok-free.app/api/customers";
 const API_URL2 = "https://60c5-91-205-43-215.ngrok-free.app/api/customers/sign";
+const API_URL3 = "https://60c5-91-205-43-215.ngrok-free.app/api/pictures";
 
 
 
@@ -72,9 +73,9 @@ const LoginScreen = ({ navigation }) => {
       const response = await fetch(API_URL);
       const users = await response.json();
       const foundUser = users.find(user => user.email === email && user.password === password);/**The verificaton is here  */
-       
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
+        nomm= foundUser.nom;
         navigation.navigate('MyTabs')
             }
       /**if not return Alert*/
@@ -82,6 +83,8 @@ const LoginScreen = ({ navigation }) => {
         Alert.alert(ERROR_MESSAGES.LOGIN);
       }
       console.log(foundUser);
+      console.log(nomm);
+
 
       return foundUser;
 
@@ -95,7 +98,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
 
-
+  
   /** While Submiting */
   const handleSubmit = async () => {
 
@@ -214,6 +217,7 @@ const InscriptionScreen = ({ navigation }) => {
             },
             body: JSON.stringify(user)  /**the body or the data to push is "user" */
             });
+  
             const createdUser = await response.json();
             return createdUser;
 
@@ -342,3 +346,5 @@ function App() {
 }
 
 export default App;
+
+export { nomm };

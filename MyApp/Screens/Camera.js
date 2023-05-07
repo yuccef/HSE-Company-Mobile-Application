@@ -2,10 +2,14 @@ import React from 'react';
 import {Text, View, TouchableOpacity, TextInput, Keyboard } from 'react-native';
 
 import {styles} from '../Styles'
+import { nomm } from './LoginScreen';
+
 
 // add this:
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-camera';
+
+
 
 const PHOTO_INTERVAL = 5000;
 const FOCUS_TIME = 3000;
@@ -45,13 +49,27 @@ export class Mycamera extends React.Component {
     .then(response => response.json())
   }
 
-  onPictureTaken = (photo) => {
+  onPictureTaken = async (photo) => {
+    const response = await this.uploadPicture(photo);
+    const imageId = response.imageId;
+    const fileName = `${nomm}.jpg`;
+    const data = {
+      image: photo.base64,
+      fileName: fileName
+    };
     this.setState({ takePicture: false });
-    this.uploadPicture(photo)
-      .then(() => console.log('Picture uploaded successfully'))
-      .catch((error) => console.log('Error uploading picture: ', error));
+    fetch(SERVER_URL, {
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST'
+    })
+    .then(response => response.json())
+    .then(() => console.log('Picture uploaded successfully'))
+    .catch((error) => console.log('Error uploading picture: ', error));
   }
-
+  
   handlePress = () => {
     Keyboard.dismiss();
   };

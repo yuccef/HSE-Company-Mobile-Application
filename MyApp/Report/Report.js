@@ -102,6 +102,8 @@ export class Mycamera extends React.Component {
   };
 
   // Gestion de l'input commentaire
+
+
   handleInputChange(text) {
     console.log(text);
     this.setState({ inputValue: text });
