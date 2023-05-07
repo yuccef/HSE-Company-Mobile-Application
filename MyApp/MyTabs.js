@@ -37,7 +37,6 @@ export default function MyTabs() {
             <AntDesign name="checkcircleo" size={size} color={"green"} />
           ),
         }}/>
-        
         <Tab.Screen
     name="Signaler un risque"
     component={Mycamera}
@@ -47,7 +46,6 @@ export default function MyTabs() {
         ),
     }}
 />
-
       <Tab.Screen
         name="HSE"
         component={HSE}
@@ -68,6 +66,7 @@ export default function MyTabs() {
         }}/>
 
 
+
     </Tab.Navigator>
 
   );
@@ -75,3 +74,14 @@ export default function MyTabs() {
 MyTabs.options = {
   headerShown: false
 };
+
+
+{/* <Tab.Screen
+    name="Photo"
+    component={ImageScreen}
+    options={{
+        tabBarIcon: ({ color, size }) => (
+            <AntDesign name="warning" size={size} color={color} />
+        ),
+    }}
+/> */}

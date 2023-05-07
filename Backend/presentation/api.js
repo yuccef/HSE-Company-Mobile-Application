@@ -8,8 +8,10 @@ const customers = JSON.parse(data);
 const businesAdmin = require("../adminBackEnd/businessAdmin/business");
 const dataAdmin = fs.readFileSync('./Backend/adminBackEnd/dataAdmin/signin.json');
 const Admins = JSON.parse(dataAdmin);
+const bodyParser = require('body-parser');
 
-
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(express.json({ limit: '50mb' }));
 
 /**Creating apiServ class  */
 const apiServ = {
@@ -149,7 +151,7 @@ const apiServ = {
          let latestPhoto = null;
 
 
-         app.post('api/pictures', (req, res) => {
+         app.post('/api/pictures', (req, res) => {
           // Very light error handling
           if(!req.body) return res.sendStatus(400); 
         
@@ -163,7 +165,7 @@ const apiServ = {
         });
         
   // View latest image
-app.get('api/pictures', (req, res) => {
+app.get('/api/pictures', (req, res) => {
   // Does this session have an image yet?
   console.log(latestPhoto);
   if(!latestPhoto) {
