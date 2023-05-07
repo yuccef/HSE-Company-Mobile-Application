@@ -16,7 +16,7 @@ let nomm;
 /**URLs of Databases */
 const API_URL = "https://60c5-91-205-43-215.ngrok-free.app/api/customers";
 const API_URL2 = "https://60c5-91-205-43-215.ngrok-free.app/api/customers/sign";
-const API_URL3 = "https://60c5-91-205-43-215.ngrok-free.app/api/pictures";
+const API_URL3 = "https://60c5-91-205-43-215.ngrok-free.app/api/name";
 
 
 
@@ -217,7 +217,8 @@ const InscriptionScreen = ({ navigation }) => {
             },
             body: JSON.stringify(user)  /**the body or the data to push is "user" */
             });
-  
+
+     
             const createdUser = await response.json();
             return createdUser;
 
