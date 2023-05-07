@@ -9,7 +9,9 @@ import ReportScreen from './Screens/ReportScreen'
 import SettingsScreen from './Screens/SettingScreen'
 import button_camera from './button_risk';
 import {styles} from './Styles'
-import Mycamera from './Screens/Camera';
+import {Mycamera} from './Report/Report' 
+import {ImageScreen}  from './Report/ImageScreen'
+import ButtonRisk from './button_risk';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,16 +34,27 @@ export default function MyTabs() {
         options={{
           tabBarLabel: 'Signalements',
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="report-problem" size={size} color={color} />
+            <AntDesign name="checkcircleo" size={size} color={"green"} />
           ),
         }}/>
+        
+        <Tab.Screen
+    name="Signaler un risque"
+    component={Mycamera}
+    options={{
+        tabBarIcon: ({ color, size }) => (
+            <AntDesign name="warning" size={size} color={"red"} />
+        ),
+    }}
+/>
+
       <Tab.Screen
         name="HSE"
         component={HSE}
         options={{
           tabBarLabel: 'HSE',
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="open-book" size={size} color={color} />
+            <Entypo name="open-book" size={size} color={"purple"} />
           ),
         }}/>
       <Tab.Screen
@@ -53,6 +66,8 @@ export default function MyTabs() {
             <AntDesign name="setting" size={size} color={color} />
           ),
         }}/>
+
+
     </Tab.Navigator>
 
   );

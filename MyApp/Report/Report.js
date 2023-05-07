@@ -10,7 +10,7 @@ import * as Media_permission from 'expo-media-library'
 import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
 
 
-const SERVER_URL = 'http://192.168.1.188:5005/'
+const SERVER_URL = 'https://60c5-91-205-43-215.ngrok-free.app/api/pictures'
 
 let photouri = null;
 let photo_global = null;
