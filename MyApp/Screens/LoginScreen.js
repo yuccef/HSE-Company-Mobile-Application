@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from '../style';
 import chose from './chose'
+import {ImageScreen} from '../Report/ImageScreen'
 import LoginAdminScreen from './LoginAdminScreen';
 import MyTabs from '../MyTabs';
 
@@ -340,6 +341,7 @@ function App() {
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
         <Stack.Screen options={{headerShown: false}} name="Qui êtes-vous ?" component={chose} />
         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
+        <Stack.Screen name="Photo" component={ImageScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
