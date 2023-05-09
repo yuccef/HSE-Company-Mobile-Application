@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from '../style';
 import chose from './chose'
+import LoginAdminScreen from './LoginAdminScreen';
 import MyTabs from '../MyTabs';
 
 
@@ -14,14 +15,14 @@ let nomm;
 
 
 /**URLs of Databases */
-const API_URL = "https://56de-147-94-135-30.eu.ngrok.io/api/customers";
-const API_URL2 = "https://56de-147-94-135-30.eu.ngrok.io/api/customers/sign";
-const API_URL3 = "https://56de-147-94-135-30.eu.ngrok.io/api/name";
+const API_URL = "https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/customers";
+const API_URL2 = "https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/customers/sign";
+const API_URL3 = "https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/name";
 
 
 
 
-/**ERRORs*/
+/**ERRORS*/
 const ERROR_MESSAGES = {
   EMAIL: "Veuillez entrer une adresse e-mail valide.",
   PASSWORD: "Le mot de passe doit contenir au moins 6 caractères.",
@@ -335,6 +336,7 @@ function App() {
     <NavigationContainer independent={true}>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
         <Stack.Screen options={{headerShown: false}} name="Qui êtes-vous ?" component={chose} />
         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />

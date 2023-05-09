@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign, Entypo, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
-
+import {Text } from 'react-native';
 
 
 import HomeScreen from './Screens/HomeScreen'
@@ -22,7 +22,9 @@ export default function MyTabs() {
         name="Accueil"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Accueil',
+          tabBarLabel: ({ color }) => (
+            <Text style={{ color: color, fontSize: 8 }}>Accueil</Text>
+          ),
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
@@ -32,37 +34,62 @@ export default function MyTabs() {
         name="Signalements"
         component={ReportScreen}
         options={{
-          tabBarLabel: 'Signalements',
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="checkcircleo" size={size} color={"green"} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ color: focused ? 'green' : color, fontSize: 8 }}>Signalements</Text>
           ),
+          tabBarIcon: ({ focused, size, color }) => (
+            <AntDesign name="checkcircleo" size={size} color={focused ? 'green' : color} />
+          ),
+          tabBarOptions: {
+            activeTintColor: 'green',
+            inactiveTintColor: 'gray',
+          },
         }}/>
-        <Tab.Screen
-    name="Signaler un risque"
-    component={Mycamera}
-    options={{
-        tabBarIcon: ({ color, size }) => (
-            <AntDesign name="warning" size={size} color={"red"} />
-        ),
+      <Tab.Screen
+        name="Signaler un risque"
+        component={Mycamera}
+        options={{
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ textAlign: 'center', color: focused ? 'red' : color, fontSize: 8 }}>Signaler un risque</Text>
+          ),
+          tabBarIcon: ({ focused, color, size }) => (
+              <AntDesign name="warning" size={size} color={focused ? 'red' : color} />
+          ),
+          tabBarOptions: {
+            activeTintColor: 'red',
+            inactiveTintColor: 'gray',
+          },
     }}
 />
       <Tab.Screen
         name="HSE"
         component={HSE}
         options={{
-          tabBarLabel: 'HSE',
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="open-book" size={size} color={"purple"} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ textAlign: 'center', color: focused ? 'purple' : color, fontSize: 8 }}>HSE</Text>
           ),
+          tabBarIcon: ({focused, color, size }) => (
+            <Entypo name="open-book" size={size} color={focused ? 'purple' : color} />
+          ),
+          tabBarOptions: {
+            activeTintColor: 'purple',
+            inactiveTintColor: 'gray',
+          },
         }}/>
       <Tab.Screen
         name="Paramètres"
         component={SettingsScreen}
         options={{
-          tabBarLabel: 'Paramètres',
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="setting" size={size} color={color} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ textAlign: 'center', color: focused ? 'dark' : color, fontSize: 8 }}>Paramètres</Text>
           ),
+          tabBarIcon: ({focused, color, size }) => (
+            <AntDesign name="setting" size={size} color={focused ? 'dark' : color} />
+          ),
+          tabBarOptions: {
+            activeTintColor: 'dark',
+            inactiveTintColor: 'gray',
+          },
         }}/>
 
 
