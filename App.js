@@ -11,6 +11,8 @@ import chose from './MyApp/Screens/chose'
 import {styles} from './MyApp/Styles'
 const Stack = createNativeStackNavigator();
 
+test
+
 function App() {
   return (
     <NavigationContainer>
