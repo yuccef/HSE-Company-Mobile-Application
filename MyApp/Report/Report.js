@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, TouchableOpacity, TextInput, Keyboard} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 
 import {styles} from '../Styles'
 
@@ -48,6 +49,7 @@ export class Mycamera extends React.Component {
         })
       );
   }
+
 
   // Changement d'état après avoir pris une photo
   takePicture = () => {
@@ -109,9 +111,13 @@ export class Mycamera extends React.Component {
     this.setState({ inputValue: text });
   }
 
+  setSelectedValue = (value) => {
+    this.setState({ selectedValue: value });
+  }
+
   // Mise en page
   render() {
-    const { cameraPermission, takePicture, isPictureTaken, inputValue } = this.state;
+    const { cameraPermission, takePicture, isPictureTaken, inputValue, selectedValue } = this.state;
     return (
       // Demande de permission d'accés à la camera
       <View style={styles.container_camera}>
@@ -146,6 +152,21 @@ export class Mycamera extends React.Component {
             ) : (
               // Mettre tout l'écran en "bouton" pour que le clavier s'enlève lorsqu'on appuie dessus
               <TouchableOpacity style={{position:'absolute', width:'100%', height: '100%'}} onPress={this.handlePress}>
+                {/* Liste déroulante */}
+                <View>
+                  <Picker
+                    selectedValue={selectedValue}
+                    onValueChange={(itemValue) =>
+                      this.setSelectedValue(itemValue)}>
+                    <Picker.Item label="Risque physique" value="RP" />
+                    <Picker.Item label="Risque chimique" value="RC" />
+                    <Picker.Item label="Risque biologique" value="RB" />
+                    <Picker.Item label="Risque psychosociaux" value="RPS" />
+                    <Picker.Item label="Risque lié à l'organisation du travail" value="RO" />
+                    <Picker.Item label="Risque lié à l'environnement de travail" value="RE" />
+                    <Picker.Item label="Autre précisez..." value="Autre" />
+                  </Picker>
+                </View>
                 {/* Input pour l'envoie du commentaire */}
                 <TextInput
                 style={styles.input_risk}

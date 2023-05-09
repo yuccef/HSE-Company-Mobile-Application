@@ -81,13 +81,13 @@ export default function MyTabs() {
         component={SettingsScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text style={{ textAlign: 'center', color: focused ? '#000000' : color, fontSize: 10 }}>Paramètres</Text>
+            <Text style={{ textAlign: 'center', color: focused ? 'black' : color, fontSize: 10 }}>Paramètres</Text>
           ),
           tabBarIcon: ({focused, color, size }) => (
-            <AntDesign name="setting" size={size} color={focused ? 'dark' : color} />
+            <AntDesign name="setting" size={size} color={focused ? 'black' : color} />
           ),
           tabBarOptions: {
-            activeTintColor: 'dark',
+            activeTintColor: 'black',
             inactiveTintColor: 'gray',
           },
         }}/>
