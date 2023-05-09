@@ -8,6 +8,14 @@ import { styles } from '../style';
 import MyTabs from '../MyTabs';
 
 
+import chose from './chose'
+import {ImageScreen} from '../Report/ImageScreen'
+import LoginAdminScreen from './LoginAdminScreen';
+
+
+
+
+
 const Stack = createNativeStackNavigator();
 
 let nomm;
@@ -16,7 +24,6 @@ let nomm;
 /**URLs of Databases */
 const API_URL = "https://59fa-37-170-28-157.ngrok-free.app/api/customers";
 const API_URL2 = "https://59fa-37-170-28-157.ngrok-free.app/api/customers/sign";
-const API_URL3 = "https://60c5-91-205-43-215.ngrok-free.app/api/name";
 
 
 
@@ -339,8 +346,11 @@ function App() {
     <NavigationContainer independent={true}>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
-        <Stack.Screen name="MyTabs" component={MyTabs} />
+        <Stack.Screen options={{headerShown: false}} name="Qui êtes-vous ?" component={chose} />
+        <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
+        <Stack.Screen name="Photo" component={ImageScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

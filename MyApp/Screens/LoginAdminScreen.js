@@ -5,9 +5,17 @@ import { SafeAreaView, View, Text, Image, ScrollView, TextInput, Button, Alert }
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from '../style';
-import MyTabs from '../MyTabs';
+import MyTabs from '../MyTabsAdmin';
 
 
+
+
+import chose from './chose'
+import {ImageScreen} from '../Report/ImageScreen'
+import LoginAdminScreen from './LoginAdminScreen';
+
+
+let nomm;
 const Stack = createNativeStackNavigator();
 
 
@@ -75,6 +83,7 @@ const LoginScreen = ({ navigation }) => {
        
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
+        nomm= foundUser.nom;
         navigation.navigate('MyTabs')
             }
       /**if not return Alert*/
@@ -331,12 +340,17 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Inscription" component={InscriptionScreen} />
-        <Stack.Screen name="MyTabs" component={MyTabs} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+       <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
+        <Stack.Screen options={{headerShown: false}} name="Qui êtes-vous ?" component={chose} />
+         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
+         <Stack.Screen name="Photo" component={ImageScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+
 export default App;
+
+export { nomm };

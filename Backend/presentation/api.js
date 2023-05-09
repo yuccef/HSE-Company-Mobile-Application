@@ -160,54 +160,52 @@ const apiServ = {
          let latestPhoto = null;
 
          app.post('/api/pictures', (req, res) => {
-          // Check that the request body is not empty
-          if (!req.body) {
-            return res.sendStatus(400); 
-          }
-        
-          console.log('got photo');
-        
-          // Update the latest photo and respond happily
-          latestPhoto = req.body.image;
-          console.log(latestPhoto);
-          console.log(req.body.comment);
-          res.sendStatus(200);
-        });
-        
-        // View latest image
-        app.get('/api/pictures', (req, res) => {
-          // Does this session have an image yet?
-          console.log(latestPhoto);
-          if (!latestPhoto) {
-            return res.status(404).send("Nothing here yet");
-          }
-        
-          console.log('sending photo');
-        
-          try {
-            // Send the image
-            var img = Buffer.from(latestPhoto, 'base64');
-        
-            // Set the response headers before sending the response
-            res.setHeader('Content-Type', 'image/png');
-            res.setHeader('Content-Length', img.length);
-            let fileName="testyoussef"
-            // Save the image to file system
-            fs.writeFile(`./signalPictures/${fileName}.png`, img, (err) => {
-              if (err) throw err;
-              console.log('Image saved to file system!');
-            });
-        
-            res.send(img);
-          } catch (e) {
-            // Log the error and stay alive
-            console.log(e);
-            return res.sendStatus(500);
-          }
-        });
-        
-
-
+           // Check that the request body is not empty
+           if (!req.body) {
+             return res.sendStatus(400); 
+           }
+         
+           console.log('got photo');
+         
+           // Update the latest photo and respond happily
+           latestPhoto = JSON.stringify(req.body.image);
+           console.log(latestPhoto);
+           console.log(req.body.comment);
+           res.sendStatus(200);
+         });
+         
+         // View latest image
+         app.get('/api/pictures', (req, res) => {
+           // Does this session have an image yet?
+           console.log(latestPhoto);
+           if (!latestPhoto) {
+             return res.status(404).send("Nothing here yet");
+           }
+         
+           console.log('sending photo');
+         
+           try {
+             // Send the image
+             var img = Buffer.from(JSON.parse(latestPhoto), 'base64');
+         
+             // Set the response headers before sending the response
+             res.setHeader('Content-Type', 'image/png');
+             res.setHeader('Content-Length', img.length);
+             let fileName="testyoussef"
+             // Save the image to file system
+             fs.writeFile(`./signalPictures/${fileName}.png`, img, (err) => {
+               if (err) throw err;
+               console.log('Image saved to file system!');
+             });
+         
+             res.send(img);
+           } catch (e) {
+             // Log the error and stay alive
+             console.log(e);
+             return res.sendStatus(500);
+           }
+         });
+         
 
 
          ///////////////////////// FOR COMMENTS////////////////////////////////
