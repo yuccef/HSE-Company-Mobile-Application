@@ -336,10 +336,10 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
         <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
-        <Stack.Screen options={{headerShown: false}} name="Qui êtes-vous ?" component={chose} />
+        <Stack.Screen options={{headerLeft: null}} name="Qui êtes-vous ?" component={chose} />
         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
         <Stack.Screen name="Photo" component={ImageScreen}/>
       </Stack.Navigator>
