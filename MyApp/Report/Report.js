@@ -1,6 +1,6 @@
   import React, {useState} from 'react';
   import {Text, View, TouchableOpacity, TextInput, Keyboard} from 'react-native';
-  //import {Picker} from '@react-native-picker/picker';
+  import {Picker} from '@react-native-picker/picker';
 
   import {styles} from '../Styles'
 
@@ -11,6 +11,7 @@
   import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
 
   import { nomm } from '../Screens/LoginScreen';
+  import { prenomm } from '../Screens/LoginScreen';
 
   const SERVER_URL = 'https://59fa-37-170-28-157.ngrok-free.app/api/pictures'
   const SERVER_URL_COMMENTS = 'https://59fa-37-170-28-157.ngrok-free.app/api/worker/comments';
@@ -30,6 +31,7 @@
       isPictureTaken: false,
       isPictureLoaded: false,
       comment :'',
+      categorie:'',
 
     };
 
@@ -58,8 +60,12 @@
     // Changement d'état après avoir pris une photo
     takePicture = () => {
       this.setState({ takePicture: true });
-    }
 
+ 
+    }
+    setSelectedValue = (value) => {
+      this.setState({ selectedValue: value });
+    }
 
     // Récupère l'uri de la photo pour le placer dans la variable global afin qu'il soit accessible de partout dans le programme
     onPictureTaken = (photo) => {
@@ -86,8 +92,11 @@
     // Envoi du signalement
     sendReport = async () => {
       console.log('Comment', this.state.comment);
+      console.log('categorie', this.state.categorie);
+
       await this.uploadReport();
       this.handleSubmit();
+      this.setSelectedValue();
       this.props.navigation.navigate('MyTabs');
     };
     
@@ -113,7 +122,6 @@
       Keyboard.dismiss();
     };
 
-    // Gestion de l'input commentaire
 
 
 
@@ -124,12 +132,19 @@
     this.setState({ comment });
   };
 
+  handleCategorieChange = (categorie) => {
+    console.log(categorie);
+    this.setState({ categorie });
+  };
       
   handleSubmit = () => {
     const  commentt = this.state.comment;
+    const categoriee = this.state.categorie;
     const data = {
       nom: nomm,
+      prenom:prenomm,
       comment: commentt,
+      categorie: categoriee,
     };
     fetch(SERVER_URL_COMMENTS, {
       body: JSON.stringify(data),
@@ -156,7 +171,7 @@
     
     // Mise en page
     render() {
-      const { cameraPermission, takePicture, isPictureTaken, comment } = this.state;
+      const { cameraPermission, takePicture, isPictureTaken, comment , selectedValue } = this.state;
       return (
         // Demande de permission d'accés à la camera
         <View style={styles.container_camera}>
@@ -190,6 +205,23 @@
               ) : (
                 // Mettre tout l'écran en "bouton" pour que le clavier s'enlève lorsqu'on appuie dessus
                 <TouchableOpacity style={{position:'absolute', width:'100%', height: '100%'}} onPress={this.handlePress}>
+
+
+<View>
+<Picker
+  selectedValue={this.state.categorie}
+  onValueChange={(itemValue, itemIndex) => this.setState({ categorie: itemValue })}
+>
+                    <Picker.Item label="Risque physique" value="Risque physique" />
+                    <Picker.Item label="Risque chimique" value="Risque chimique" />
+                    <Picker.Item label="Risque biologique" value="Risque biologique" />
+                    <Picker.Item label="Risque psychosociaux" value="Risque psychosociaux" />
+                    <Picker.Item label="Risque lié à l'organisation du travail" value="Risque lié à l'organisation du travail" />
+                    <Picker.Item label="Risque lié à l'environnement de travail" value="Risque lié à l'environnement de travail" />
+                    <Picker.Item label="Autre précisez..." value="Autre" />
+                  </Picker>
+                </View>
+
                   {/* Input pour l'envoie du commentaire */}
                   <TextInput
                   style={styles.input_risk}

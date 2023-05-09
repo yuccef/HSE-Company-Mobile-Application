@@ -18,7 +18,7 @@ import LoginAdminScreen from './LoginAdminScreen';
 
 const Stack = createNativeStackNavigator();
 
-let nomm;
+let nomm, prenomm;
 
 
 /**URLs of Databases */
@@ -83,6 +83,7 @@ const LoginScreen = ({ navigation }) => {
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
         nomm= foundUser.nom;
+        prenomm= foundUser.prenom;
         navigation.navigate('MyTabs')
             }
       /**if not return Alert*/
@@ -359,3 +360,4 @@ function App() {
 export default App;
 
 export { nomm };
+export { prenomm };

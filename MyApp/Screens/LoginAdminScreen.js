@@ -15,7 +15,7 @@ import {ImageScreen} from '../Report/ImageScreen'
 import LoginAdminScreen from './LoginAdminScreen';
 
 
-let nomm;
+let nomm,prenomm;
 const Stack = createNativeStackNavigator();
 
 
@@ -84,6 +84,7 @@ const LoginScreen = ({ navigation }) => {
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
         nomm= foundUser.nom;
+        prenomm= foundUser.prenom;
         navigation.navigate('MyTabs')
             }
       /**if not return Alert*/
@@ -354,3 +355,4 @@ function App() {
 export default App;
 
 export { nomm };
+export { prenomm };

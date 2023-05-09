@@ -5,7 +5,7 @@ import {Text } from 'react-native';
 
 import HomeScreen from './Screens/HomeScreenAdmin'
 import HSE from './Screens/HSE'
-import ReportScreenAdmin from './Screens/ReportScreenAdmin'
+import ReportScreenAdmin from './Screens/ReportScreen'
 import SettingsScreen from './Screens/SettingScreen'
 import button_camera from './button_risk';
 import {styles} from './Styles'

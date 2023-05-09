@@ -1,1 +1,1 @@
-[{"nom":"ysf","comment":"il y'a rien"},{"nom":"test","comment":"le projet est difficile"}]
+[{"nom":"nomtest","prenom":"prenomtest","comment":"Distribution de gaz\n","categorie":"Risque physique"},{"nom":"nomtest","prenom":"prenomtest","comment":"Porte cassé\n","categorie":"Autre"},{"nom":"nomtest","prenom":"prenomtest","comment":"Médicaments versés \n\n","categorie":"Risque biologique"},{"nom":"nomtest","prenom":"prenomtest","comment":"Je sais pas","categorie":"Risque chimique"}]
