@@ -23,7 +23,7 @@ export default function MyTabs() {
         component={HomeScreen}
         options={{
           tabBarLabel: ({ color }) => (
-            <Text style={{ color: color, fontSize: 8 }}>Accueil</Text>
+            <Text style={{ color: color, fontSize: 10 }}>Accueil</Text>
           ),
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
@@ -35,7 +35,7 @@ export default function MyTabs() {
         component={ReportScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text style={{ color: focused ? 'green' : color, fontSize: 8 }}>Signalements</Text>
+            <Text style={{ color: focused ? 'green' : color, fontSize: 10 }}>Signalements</Text>
           ),
           tabBarIcon: ({ focused, size, color }) => (
             <AntDesign name="checkcircleo" size={size} color={focused ? 'green' : color} />
@@ -66,7 +66,7 @@ export default function MyTabs() {
         component={HSE}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text style={{ textAlign: 'center', color: focused ? 'purple' : color, fontSize: 8 }}>HSE</Text>
+            <Text style={{ textAlign: 'center', color: focused ? 'purple' : color, fontSize: 10 }}>HSE</Text>
           ),
           tabBarIcon: ({focused, color, size }) => (
             <Entypo name="open-book" size={size} color={focused ? 'purple' : color} />
@@ -81,7 +81,7 @@ export default function MyTabs() {
         component={SettingsScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text style={{ textAlign: 'center', color: focused ? 'dark' : color, fontSize: 8 }}>Paramètres</Text>
+            <Text style={{ textAlign: 'center', color: focused ? '#000000' : color, fontSize: 10 }}>Paramètres</Text>
           ),
           tabBarIcon: ({focused, color, size }) => (
             <AntDesign name="setting" size={size} color={focused ? 'dark' : color} />
@@ -101,14 +101,3 @@ export default function MyTabs() {
 MyTabs.options = {
   headerShown: false
 };
-
-
-{/* <Tab.Screen
-    name="Photo"
-    component={ImageScreen}
-    options={{
-        tabBarIcon: ({ color, size }) => (
-            <AntDesign name="warning" size={size} color={color} />
-        ),
-    }}
-/> */}

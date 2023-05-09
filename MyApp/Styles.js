@@ -89,7 +89,7 @@ export const styles = StyleSheet.create({
   },
   button_goto_camera: {
     position: 'absolute',
-    bottom: 120,
+    bottom: 100,
     backgroundColor: '#E74C3C',
     borderRadius: 100,
     //paddingTop: 23,
@@ -101,7 +101,7 @@ export const styles = StyleSheet.create({
   },
   button_send_report: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 20,
     alignSelf: 'center',
     backgroundColor: '#007aff',//'#2196F3',
     borderRadius: 50,
@@ -150,7 +150,7 @@ export const styles = StyleSheet.create({
     borderRadius: 4,
     width: 360,
     alignSelf: 'center',
-    height: 250,
+    height: 200,
     margin: 12,
     borderWidth: 1,
     padding: 10,
@@ -160,7 +160,7 @@ export const styles = StyleSheet.create({
     borderColor: '#bbb',
     alignSelf: 'center',
     width: 360,
-    height: 250,
+    height: 200,
     borderWidth: 1,
     backgroundColor: 'white',
     padding: 5,
@@ -168,7 +168,7 @@ export const styles = StyleSheet.create({
   text_goto_image: {
     color: '#bbb',
     alignSelf: 'center',
-    bottom: -60,
+    bottom: -10,
   },
   container1: {
     flex: 1,

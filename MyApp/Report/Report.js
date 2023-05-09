@@ -91,7 +91,7 @@ export class Mycamera extends React.Component {
   dispLink =() => {
   return (
     <TouchableOpacity style={styles.goto_image} onPress={() => {this.props.navigation.navigate('Photo', { photouri: photouri });}}>
-      <EvilIcons style={{alignSelf: 'center', top: 40}}name="image" size={200} color="#bbb" />
+      <EvilIcons style={{alignSelf: 'center', top: 10}}name="image" size={200} color="#bbb" />
       <Text style={styles.text_goto_image}>Cliquez ici pour voir l'image...</Text>
     </TouchableOpacity>
   )};
@@ -170,7 +170,7 @@ export class Mycamera extends React.Component {
                 <View style={{
                   width: '100%', height : 1, backgroundColor: '#bbb',
                   position:'absolute',
-                  bottom: 100,}}
+                  bottom: 80,}}
                 />
                 {/* Bouton d'envoie */}
                 <TouchableOpacity
