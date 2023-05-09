@@ -14,8 +14,8 @@ let nomm;
 
 
 /**URLs of Databases */
-const API_URL = "https://60c5-91-205-43-215.ngrok-free.app/api/customers";
-const API_URL2 = "https://60c5-91-205-43-215.ngrok-free.app/api/customers/sign";
+const API_URL = "https://59fa-37-170-28-157.ngrok-free.app/api/customers";
+const API_URL2 = "https://59fa-37-170-28-157.ngrok-free.app/api/customers/sign";
 const API_URL3 = "https://60c5-91-205-43-215.ngrok-free.app/api/name";
 
 

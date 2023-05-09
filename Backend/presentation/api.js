@@ -2,12 +2,19 @@ const express = require("express");
 const app = express();
 const fs = require('fs');
 const cors = require('cors');
+
 const business = require("../workerBackEnd/businesWorker/business");
 const data = fs.readFileSync('./Backend/workerBackEnd/dataWorker/signin.json');
 const customers = JSON.parse(data);
+
 const businesAdmin = require("../adminBackEnd/businessAdmin/business");
 const dataAdmin = fs.readFileSync('./Backend/adminBackEnd/dataAdmin/signin.json');
 const Admins = JSON.parse(dataAdmin);
+
+const businessc = require("../workerBackEnd/businesWorker/business");
+const datac = fs.readFileSync('./Backend/workerBackEnd/dataWorker/comments.json');
+const customersc = JSON.parse(datac);
+
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -199,6 +206,55 @@ const apiServ = {
           }
         });
         
+
+
+
+
+         ///////////////////////// FOR COMMENTS////////////////////////////////
+
+        /**Create a route to Get Database with all the Information of the people registered */
+        app.get('/api/worker/comments', (req, res) => {
+          fs.readFile('./Backend/workerBackEnd/dataWorker/comments.json', (err, data) => {
+          if (err) {
+          console.error(err);
+          return res.sendStatus(500);
+             }
+           res.json(JSON.parse(data));
+         });
+       });    
+
+
+        /**Create a route for Adding a user */
+         /**the POST option is for Adding data in the server */
+        app.post('/api/worker/comments', (req, res) => {
+           businessc.AddComment(req.body);
+           fs.readFile('./Backend/workerBackEnd/dataWorker/comments.json', (err) => {
+           if (err) {
+              res.status(500).send('Erreur lors de la lecture du fichier customers.json');
+           } else {
+              res.json(customersc);
+             }
+          });            
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
         /**Server running on port */
         app.listen(port, function(){

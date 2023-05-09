@@ -9,8 +9,11 @@ import * as Permissions from 'expo-camera';
 import * as Media_permission from 'expo-media-library'
 import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
 
+import { nomm } from '../Screens/LoginScreen';
 
-const SERVER_URL = 'https://60c5-91-205-43-215.ngrok-free.app/api/pictures'
+const SERVER_URL = 'https://59fa-37-170-28-157.ngrok-free.app/api/pictures'
+const SERVER_URL_COMMENTS = 'https://59fa-37-170-28-157.ngrok-free.app/api/worker/comments';
+
 
 let photouri = null;
 let photo_global = null;
@@ -18,10 +21,6 @@ let photo_global = null;
 
 export class Mycamera extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
 
   // Initialisation des états
   state = {
@@ -29,8 +28,13 @@ export class Mycamera extends React.Component {
     takePicture: false,
     isPictureTaken: false,
     isPictureLoaded: false,
+    comment :'',
+
   };
 
+
+
+  //////////////// PICTURE /////////////////////////
   // Méthode :
 
   // Demande des permissions
@@ -49,34 +53,12 @@ export class Mycamera extends React.Component {
       );
   }
 
+
   // Changement d'état après avoir pris une photo
   takePicture = () => {
     this.setState({ takePicture: true });
   }
 
-  // Envoi du signalement
-  sendReport = () => {
-    console.log('Input value:', this.state.inputValue);
-    this.uploadReport()
-      .then(() => console.log('Report uploaded successfully'))
-      .catch((error) => console.log('Error uploading report: ', error));
-    this.props.navigation.navigate('MyTabs');
-  };
-
-  // Upload sur le serveur le signalement
-  uploadReport =  () => {
-    return fetch(SERVER_URL, {
-      body: JSON.stringify({
-        comment: this.state.inputValue,
-        image: photo_global.base64
-      }),
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'POST'
-    })
-    //.then(response => response.json())            /!\ ME LOG UNE ERREUR CAR LE SERVEUR NE RENVOIE PAS UN JSON (NORMAL) /!\
-  }
 
   // Récupère l'uri de la photo pour le placer dans la variable global afin qu'il soit accessible de partout dans le programme
   onPictureTaken = (photo) => {
@@ -87,14 +69,43 @@ export class Mycamera extends React.Component {
     this.setState({ isPictureTaken: true}); // i.e Appel de dispLink
   }
 
-  // Affichage du "lien" vers l'image prise
-  dispLink =() => {
-  return (
-    <TouchableOpacity style={styles.goto_image} onPress={() => {this.props.navigation.navigate('Photo', { photouri: photouri });}}>
-      <EvilIcons style={{alignSelf: 'center', top: 40}}name="image" size={200} color="#bbb" />
-      <Text style={styles.text_goto_image}>Cliquez ici pour voir l'image...</Text>
-    </TouchableOpacity>
-  )};
+
+
+    // Récupère l'uri de la photo pour le placer dans la variable global afin qu'il soit accessible de partout dans le programme
+    onPictureTaken = (photo) => {
+      if (photo == null) return null;
+      photouri = photo.uri;
+      photo_global = photo;
+      this.setState({ takePicture: false }); // i.e Retour à la page de signalement de risque
+      this.setState({ isPictureTaken: true}); // i.e Appel de dispLink
+    }
+
+    
+
+  // Envoi du signalement
+  sendReport = async () => {
+    console.log('Comment', this.state.comment);
+    await this.uploadReport();
+    this.handleSubmit();
+    this.props.navigation.navigate('MyTabs');
+  };
+  
+  // Upload sur le serveur le signalement
+  uploadReport =  () => {
+    return fetch(SERVER_URL, {
+      body: JSON.stringify({
+        image: photo_global
+      }),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST'
+    })
+    
+  //.then(response => response.json())            /!\ ME LOG UNE ERREUR CAR LE SERVEUR NE RENVOIE PAS UN JSON (NORMAL) /!\
+  }
+
+
 
   // Ferme le clavier 
   handlePress = () => {
@@ -104,14 +115,47 @@ export class Mycamera extends React.Component {
   // Gestion de l'input commentaire
 
 
-  handleInputChange(text) {
-    console.log(text);
-    this.setState({ inputValue: text });
-  }
 
+
+// Gestion de l'input commentaire
+handleCommentChange = (comment) => {
+  console.log(comment);
+  this.setState({ comment });
+};
+
+    
+handleSubmit = () => {
+  const  commentt = this.state.comment;
+  const data = {
+    nom: nomm,
+    comment: commentt,
+  };
+  fetch(SERVER_URL_COMMENTS, {
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json',
+    },
+    method: 'POST',
+  })
+    .then(() => console.log('Comment uploaded successfully'))
+    .catch((error) => console.log('Error uploading comment: ', error));
+};
+
+
+
+
+  // Affichage du "lien" vers l'image prise
+  dispLink =() => {
+    return (
+      <TouchableOpacity style={styles.goto_image} onPress={() => {this.props.navigation.navigate('Photo', { photouri: photouri });}}>
+        <EvilIcons style={{alignSelf: 'center', top: 40}}name="image" size={200} color="#bbb" />
+        <Text style={styles.text_goto_image}>Cliquez ici pour voir l'image...</Text>
+      </TouchableOpacity>
+    )};
+  
   // Mise en page
   render() {
-    const { cameraPermission, takePicture, isPictureTaken, inputValue } = this.state;
+    const { cameraPermission, takePicture, isPictureTaken, comment } = this.state;
     return (
       // Demande de permission d'accés à la camera
       <View style={styles.container_camera}>
@@ -136,7 +180,6 @@ export class Mycamera extends React.Component {
                   style={styles.button_camera}
                   onPress={() => this.camera.takePictureAsync({
                     quality: 0.1,
-                    base64: true,
                     exif: false
                   }).then(this.onPictureTaken)}
                 >
@@ -151,9 +194,11 @@ export class Mycamera extends React.Component {
                 style={styles.input_risk}
                 placeholder="Ajouter un commentaire..."
                 multiline
-                value={inputValue}
+                value={comment}
                 inputMode='text'
-                onChangeText={this.handleInputChange}
+                onChangeText={this.handleCommentChange}
+              
+
                 />
                 <View>
                   {isPictureTaken ?( 
@@ -173,10 +218,10 @@ export class Mycamera extends React.Component {
                   bottom: 100,}}
                 />
                 {/* Bouton d'envoie */}
-                <TouchableOpacity
-                  style={styles.button_send_report}
-                  onPress={this.sendReport}
-                >
+                <TouchableOpacity 
+   style={styles.button_send_report}
+   onPress={this.sendReport}>
+    
                   <Text style={styles.text_button_goto_camera}>Envoyer le signalement</Text>
                 </TouchableOpacity>
               </TouchableOpacity>
