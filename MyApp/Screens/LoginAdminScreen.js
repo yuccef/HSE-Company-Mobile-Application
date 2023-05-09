@@ -14,8 +14,8 @@ const Stack = createNativeStackNavigator();
 
 
 /**URLs of Databases */
-const API_URL = "https://60c5-91-205-43-215.ngrok-free.app/api/admin";
-const API_URL2 = "https://60c5-91-205-43-215.ngrok-free.app/api/admin/sign";
+const API_URL = "https://56de-147-94-135-30.eu.ngrok.io/api/admin";
+const API_URL2 = "https://56de-147-94-135-30.eu.ngrok.io/api/admin/sign";
 
 
 

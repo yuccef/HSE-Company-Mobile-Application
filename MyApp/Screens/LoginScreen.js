@@ -1,10 +1,10 @@
-
 /**Import parametres*/
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, TextInput, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from '../style';
+import chose from './chose'
 import MyTabs from '../MyTabs';
 
 
@@ -14,9 +14,9 @@ let nomm;
 
 
 /**URLs of Databases */
-const API_URL = "https://60c5-91-205-43-215.ngrok-free.app/api/customers";
-const API_URL2 = "https://60c5-91-205-43-215.ngrok-free.app/api/customers/sign";
-const API_URL3 = "https://60c5-91-205-43-215.ngrok-free.app/api/name";
+const API_URL = "https://56de-147-94-135-30.eu.ngrok.io/api/customers";
+const API_URL2 = "https://56de-147-94-135-30.eu.ngrok.io/api/customers/sign";
+const API_URL3 = "https://56de-147-94-135-30.eu.ngrok.io/api/name";
 
 
 
@@ -340,6 +340,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
+        <Stack.Screen name="Qui êtes-vous ?" component={chose} />
         <Stack.Screen name="MyTabs" component={MyTabs} />
       </Stack.Navigator>
     </NavigationContainer>

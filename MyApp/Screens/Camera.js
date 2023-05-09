@@ -13,7 +13,7 @@ import * as Permissions from 'expo-camera';
 
 const PHOTO_INTERVAL = 5000;
 const FOCUS_TIME = 3000;
-const SERVER_URL = 'https://60c5-91-205-43-215.ngrok-free.app/api/pictures'
+const SERVER_URL = 'https://56de-147-94-135-30.eu.ngrok.io/api/pictures'
 
 export class Mycamera extends React.Component {
   // initialize state

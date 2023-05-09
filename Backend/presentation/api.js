@@ -17,9 +17,6 @@ app.use(express.json({ limit: '50mb' }));
 
 /**Creating apiServ class  */
 const apiServ = {
-
-
-
      start: function(port) {
                 
      app.use(express.json());
@@ -34,6 +31,7 @@ const apiServ = {
 
         /**Create a route to Get Database with all the Information of the people registered */
          app.get('/api/customers', (req, res) => {
+            console.log("***************************************get************************************");
             fs.readFile('./Backend/workerBackEnd/dataWorker/signin.json', (err, data) => {
             if (err) {
               console.error(err);

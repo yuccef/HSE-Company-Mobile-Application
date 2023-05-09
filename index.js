@@ -1,5 +1,5 @@
 const apiServ= require("./Backend/presentation/api");
-const port =3001;
+const port =3000;
 
 
 function main(){

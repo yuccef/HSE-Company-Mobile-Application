@@ -13,7 +13,7 @@ const createTwoButtonAlert = (navigation) => {
     },
     {
       text: 'Oui',
-       onPress: () => navigation.navigate('Login')
+       onPress: () => navigation.navigate('Qui êtes-vous ?'),
     }
   ]);  
 }
