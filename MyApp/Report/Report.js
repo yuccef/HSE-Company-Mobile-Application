@@ -89,15 +89,6 @@ export class Mycamera extends React.Component {
     this.setState({ isPictureTaken: true}); // i.e Appel de dispLink
   }
 
-  // Affichage du "lien" vers l'image prise
-  dispLink =() => {
-  return (
-    <TouchableOpacity style={styles.goto_image} onPress={() => {this.props.navigation.navigate('Photo', { photouri: photouri });}}>
-      <EvilIcons style={{alignSelf: 'center', top: 10}}name="image" size={200} color="#bbb" />
-      <Text style={styles.text_goto_image}>Cliquez ici pour voir l'image...</Text>
-    </TouchableOpacity>
-  )};
-
   // Ferme le clavier 
   handlePress = () => {
     Keyboard.dismiss();
@@ -177,9 +168,14 @@ export class Mycamera extends React.Component {
                 onChangeText={this.handleInputChange}
                 />
                 <View>
+                  {/* Bouton qui emmène vers l'image prise */}
                   {isPictureTaken ?( 
-                    <View>{this.dispLink()}</View>) : ( <View></View>
-                    )}</View>
+                    <View>
+                      <TouchableOpacity style={styles.goto_image} onPress={() => {this.props.navigation.navigate('Photo', { photouri: photouri });}}>
+                        <EvilIcons style={{alignSelf: 'center', top: 20}}name="image" size={100} color="#bbb" />
+                        <Text style={styles.text_goto_image}>Cliquez ici pour voir l'image...</Text>
+                      </TouchableOpacity></View>) : ( <View></View>)}
+                    </View>
                 {/* Bouton qui emmène vers la caméra */}
                 <TouchableOpacity
                   style={styles.button_goto_camera}
