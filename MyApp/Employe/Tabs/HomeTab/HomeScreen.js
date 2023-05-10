@@ -1,9 +1,8 @@
 import {  Text, View, } from 'react-native';
-import {styles} from '../Styles'
-import {Mycamera} from '../Report/Report'
-import button_risk from '../button_risk';
-import { nomm } from './LoginScreen';
-import { prenomm } from './LoginScreen';
+import {styles} from '../../../Styles/Styles'
+import button_risk from './button_risk';
+import { nomm } from '../../LoginScreen';
+import { prenomm } from '../../LoginScreen';
 
 
 export default function HomeScreen({navigation}) {
@@ -14,8 +13,4 @@ export default function HomeScreen({navigation}) {
       </View>
     );
   }
-  HomeScreen.options = {
-    headerShown: false
-  };
-
   

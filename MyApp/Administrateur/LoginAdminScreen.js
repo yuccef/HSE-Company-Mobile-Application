@@ -4,16 +4,16 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, TextInput, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { styles } from '../style';
-import MyTabs from '../MyTabsAdmin';
+import { styles } from '../Styles/style';
+import MyTabs from './MyTabsAdmin';
 
 
 
 
-import chose from './chose'
-import {ImageScreen} from '../Report/ImageScreen'
+//import chose from '../Chose'
+import {ImageScreen} from '../Employe/Tabs/ReportTab/ImageScreen'
 import LoginAdminScreen from './LoginAdminScreen';
-
+import Chose from '../Chose'
 
 let nomm,prenomm;
 const Stack = createNativeStackNavigator();
@@ -22,8 +22,8 @@ const Stack = createNativeStackNavigator();
 
 
 /**URLs of Databases */
-const API_URL = "https://4952-147-94-135-30.ngrok-free.app/api/admin";
-const API_URL2 = "https://4952-147-94-135-30.ngrok-free.app/api/admin/sign";
+const API_URL = "https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/admin";
+const API_URL2 = "https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/admin/sign";
 
 
 
@@ -312,10 +312,10 @@ return (
        onPress={handleSubmit}
      />
 </View>
-<Button
+{/* <Button
 title="Retour"
 onPress={() => navigation.goBack()}
-/>
+/> */}
 </View>
 );
 };
@@ -335,10 +335,10 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
+        <Stack.Screen options={{headerLeft: null}} name="Login" component={LoginScreen} />
+        <Stack.Screen options={{headerShown: false}} name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
-        <Stack.Screen options={{headerLeft: null}} name="Qui êtes-vous ?" component={chose} />
+        <Stack.Screen options={{headerLeft: null}} name="Qui êtes-vous ?" component={Chose} />
         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
         <Stack.Screen name="Photo" component={ImageScreen}/>
       </Stack.Navigator>

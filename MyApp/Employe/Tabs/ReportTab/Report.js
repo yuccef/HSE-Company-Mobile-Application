@@ -2,7 +2,7 @@
   import {Text, View, TouchableOpacity, TextInput, Keyboard} from 'react-native';
   import {Picker} from '@react-native-picker/picker';
 
-  import {styles} from '../Styles'
+  import {styles} from '../../../Styles/Styles'
 
 
   import { Camera } from 'expo-camera';
@@ -10,11 +10,11 @@
   import * as Media_permission from 'expo-media-library'
   import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
 
-  import { nomm } from '../Screens/LoginScreen';
-  import { prenomm } from '../Screens/LoginScreen';
+  import { nomm } from '../../LoginScreen';
+  import { prenomm } from '../../LoginScreen';
 
-  const SERVER_URL = 'https://4952-147-94-135-30.ngrok-free.app/api/pictures'
-  const SERVER_URL_COMMENTS = 'https://4952-147-94-135-30.ngrok-free.app/api/worker/comments';
+  const SERVER_URL = 'https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/pictures'
+  const SERVER_URL_COMMENTS = 'https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/worker/comments';
 
 
   let photouri = null;

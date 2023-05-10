@@ -1,7 +1,5 @@
 import {  Text, View, } from 'react-native';
-import {styles} from '../Styles'
-import {Mycamera} from '../Report/Report'
-import button_risk from '../button_risk';
+import {styles} from '../Styles/Styles'
 import { nomm } from './LoginAdminScreen';
 import { prenomm } from './LoginAdminScreen';
 

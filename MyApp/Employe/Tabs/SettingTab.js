@@ -1,5 +1,5 @@
 import { Pressable, Text, View, } from 'react-native';
-import {styles} from '../Styles'
+import {styles} from '../../Styles/Styles'
 import { Entypo } from '@expo/vector-icons';
 import { Alert} from 'react-native';
 
@@ -13,7 +13,7 @@ const createTwoButtonAlert = (navigation) => {
     },
     {
       text: 'Oui',
-       onPress: () => navigation.navigate('Qui êtes-vous ?'),
+       onPress: () => navigation.navigate('Qui êtes-vous ?', { headerShown: false }),
     }
   ]);  
 }
