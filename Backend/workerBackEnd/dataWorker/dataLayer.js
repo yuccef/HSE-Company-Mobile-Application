@@ -1,5 +1,7 @@
 const fs = require("fs");
 const fichier = "./Backend/workerBackEnd/dataWorker/signin.json"; 
+const fichierr = "./Backend/workerBackEnd/dataWorker/comments.json"; 
+
 
 
 
@@ -21,6 +23,18 @@ let dataLayer = {
         });
     },
 
+    addComment: function (data){
+        const users = fs.readFileSync(fichierr); 
+        const tab= JSON.parse(users);
+        tab.push(data);
+        var newdata = JSON.stringify(tab);
+        fs.writeFile("./Backend/workerBackEnd/dataWorker/comments.json", newdata, err => {
+            // error checking
+            if(err) throw err;
+            
+            console.log("Commentaire ajouté");
+        });
+    },
 }
 
 /**export the class to use it on other files */

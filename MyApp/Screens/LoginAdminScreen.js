@@ -5,17 +5,25 @@ import { SafeAreaView, View, Text, Image, ScrollView, TextInput, Button, Alert }
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from '../style';
-import MyTabs from '../MyTabs';
+import MyTabs from '../MyTabsAdmin';
 
 
+
+
+import chose from './chose'
+import {ImageScreen} from '../Report/ImageScreen'
+import LoginAdminScreen from './LoginAdminScreen';
+
+
+let nomm,prenomm;
 const Stack = createNativeStackNavigator();
 
 
 
 
 /**URLs of Databases */
-const API_URL = "https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/admin";
-const API_URL2 = "https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/admin/sign";
+const API_URL = "https://4952-147-94-135-30.ngrok-free.app/api/admin";
+const API_URL2 = "https://4952-147-94-135-30.ngrok-free.app/api/admin/sign";
 
 
 
@@ -75,6 +83,8 @@ const LoginScreen = ({ navigation }) => {
        
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
+        nomm= foundUser.nom;
+        prenomm= foundUser.prenom;
         navigation.navigate('MyTabs')
             }
       /**if not return Alert*/
@@ -152,12 +162,6 @@ const LoginScreen = ({ navigation }) => {
           onPress={handleSubmit}
         />
       </View>
-      
-      <Button
-        /**Button to navigate to the page wehre we can do our inscription  */
-        title="S'inscrire"
-        onPress={() => navigation.navigate('Inscription')}
-      />
     </View>
   );
 };
@@ -256,7 +260,7 @@ const handleSubmit = async () => {
           /**if DONE navigate to page 2 */
           if (createdUser) {
             Alert.alert("Inscription réussie !");
-            navigation.navigate('MyTabs')
+            navigation.navigate('LoginAdmin ')
           /**if  note ERROR*/
           } else {
             console.warn("Erreur lors de l'inscription.");
@@ -332,11 +336,18 @@ function App() {
     <NavigationContainer independent={true}>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
-        <Stack.Screen name="MyTabs" component={MyTabs} />
+        <Stack.Screen options={{headerLeft: null}} name="Qui êtes-vous ?" component={chose} />
+        <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
+        <Stack.Screen name="Photo" component={ImageScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+
 export default App;
+
+export { nomm };
+export { prenomm };

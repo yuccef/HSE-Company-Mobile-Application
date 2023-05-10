@@ -1,29 +1,34 @@
+
 /**Import parametres*/
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, TextInput, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from '../style';
+import MyTabs from '../MyTabs';
+
+
 import chose from './chose'
 import {ImageScreen} from '../Report/ImageScreen'
 import LoginAdminScreen from './LoginAdminScreen';
-import MyTabs from '../MyTabs';
+
+
+
 
 
 const Stack = createNativeStackNavigator();
 
-let nomm;
+let nomm, prenomm;
 
 
 /**URLs of Databases */
-const API_URL = "https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/customers";
-const API_URL2 = "https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/customers/sign";
-const API_URL3 = "https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/name";
+const API_URL = "https://4952-147-94-135-30.ngrok-free.app/api/customers";
+const API_URL2 = "https://4952-147-94-135-30.ngrok-free.app/api/customers/sign";
 
 
 
 
-/**ERRORS*/
+/**ERRORs*/
 const ERROR_MESSAGES = {
   EMAIL: "Veuillez entrer une adresse e-mail valide.",
   PASSWORD: "Le mot de passe doit contenir au moins 6 caractères.",
@@ -78,6 +83,7 @@ const LoginScreen = ({ navigation }) => {
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
         nomm= foundUser.nom;
+        prenomm= foundUser.prenom;
         navigation.navigate('MyTabs')
             }
       /**if not return Alert*/
@@ -265,7 +271,7 @@ const handleSubmit = async () => {
           /**if DONE navigate to page 2 */
           if (createdUser) {
             Alert.alert("Inscription réussie !");
-            navigation.navigate('MyTabs')
+            navigation.navigate('Login')
           /**if  note ERROR*/
           } else {
             console.warn("Erreur lors de l'inscription.");
@@ -329,6 +335,10 @@ InscriptionScreen.options = {
 };
 
 
+
+
+
+
 /**main Class (SCREENS) */
 
 
@@ -336,7 +346,7 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
         <Stack.Screen options={{headerLeft: null}} name="Qui êtes-vous ?" component={chose} />
@@ -350,3 +360,4 @@ function App() {
 export default App;
 
 export { nomm };
+export { prenomm };

@@ -1,128 +1,137 @@
-import React from 'react';
-import {Text, View, TouchableOpacity, TextInput, Keyboard } from 'react-native';
-
-import {styles} from '../Styles'
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity, TextInput, Keyboard } from 'react-native';
+import { Camera } from 'expo-camera';
+import * as Permissions from 'expo-permissions';
+import { styles } from '../Styles';
 import { nomm } from './LoginScreen';
 
+const SERVER_URL = 'https://4952-147-94-135-30.ngrok-free.app/api/pictures';
+const SERVER_URL_COMMENTS = 'https://4952-147-94-135-30.ngrok-free.app/api/worker/comments';
 
-// add this:
-import { Camera } from 'expo-camera';
-import * as Permissions from 'expo-camera';
+export default function MyCamera() {
+
+const [cameraPermission, setCameraPermission] = useState(null);
+const [takePicture, setTakePicture] = useState(false);
 
 
 
-const PHOTO_INTERVAL = 5000;
-const FOCUS_TIME = 3000;
-const SERVER_URL = 'https://9db9-2a01-e0a-20f-1240-c983-b27a-955-bfa6.ngrok-free.app/api/pictures'
+//const [comment, setComment] = useState('');
 
-export class Mycamera extends React.Component {
-  // initialize state
-  state = {
-    cameraPermission: null,
-    takePicture: false
-  };
 
-  // Demande la permission d'utiliser la caméra
-  componentDidMount() {
-    Permissions.requestCameraPermissionsAsync()
-      .then(({ status }) =>
-        this.setState({
-          cameraPermission: status === 'granted'
-        })
-      );
-  }
+const handlePress = () => {
+Keyboard.dismiss();
+};
 
-  takePicture = () => {
-    this.setState({ takePicture: true });
-  }
 
-  uploadPicture = (photo) => {
-    return fetch(SERVER_URL, {
-      body: JSON.stringify({
-        image: photo.base64
-      }),
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'POST'
-    })
-    .then(response => response.json())
-  }
+const handleCommentChange = (comment) => {
+setComment(comment);
+};
 
-  onPictureTaken = async (photo) => {
-    const response = await this.uploadPicture(photo);
-    const imageId = response.imageId;
-    const fileName = `${nomm}.jpg`;
-    const data = {
-      image: photo.base64,
-      fileName: fileName
-    };
-    this.setState({ takePicture: false });
-    fetch(SERVER_URL, {
-      body: JSON.stringify(data),
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'POST'
-    })
-    .then(response => response.json())
-    .then(() => console.log('Picture uploaded successfully'))
-    .catch((error) => console.log('Error uploading picture: ', error));
-  }
-  
-  handlePress = () => {
-    Keyboard.dismiss();
-  };
+const handleSubmit = () => {
 
-  render() {
-    const { cameraPermission, takePicture } = this.state;
-    return (
-      <View style={styles.container_camera}>
-        {cameraPermission === null ? (
-          <Text>Waiting for permission...</Text>
-        ) : cameraPermission === false ? (
-          <Text>Permission denied</Text>
-        ) : (
-          <View style={{ flex: 1, width: '100%' }}>
-            {takePicture ? (
-              <Camera
-                style={{ flex: 1 }}
-                type={Camera.Constants.Type.back}
-                ref={cam => this.camera = cam}
-                onPictureTaken={this.onPictureTaken}
-              >
-                
-                <TouchableOpacity
-                  style={styles.button_camera}
-                  onPress={() => this.camera.takePictureAsync({
-                    quality: 0.1,
-                    base64: true,
-                    exif: false
-                  }).then(this.onPictureTaken)}
-                >
-                  <View style={styles.button_camera_round} />
-                </TouchableOpacity>
-              </Camera>
-            ) : (
-              <TouchableOpacity style={{position:'absolute', width:'100%', height: '100%'}} onPress={this.handlePress}>
-                <TextInput
-                style={styles.input_risk}
-                placeholder="Ajouter un commentaire..."
-                multiline
-                inputMode='text'
-              />
-                <TouchableOpacity
-                  style={styles.button_goto_camera}
-                  onPress={this.takePicture}
-                >
-                  <Text style={styles.text_button_goto_camera}>Prendre en photo le risque</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-            )}
-          </View>
-        )}
-      </View>
-    );
-  }
+const data = {
+nom: nomm,
+comment: handleCommentChange(),
+};
+fetch(SERVER_URL_COMMENTS, {
+body: JSON.stringify(data),
+headers: {
+'content-type': 'application/json',
+},
+method: 'POST',
+})
+.then((response) => response.json())
+.then(() => console.log('Comment uploaded successfully'))
+.catch((error) => console.log('Error uploading comment: ', error));
+};
+
+
+
+useEffect(() => {
+Permissions.requestCameraPermissionsAsync().then(({ status }) => {
+setCameraPermission(status === 'granted');
+});
+}, []);
+
+const uploadPicture = async (photo) => {
+const response = await fetch(SERVER_URL, {
+body: JSON.stringify({
+image: photo.base64,
+}),
+headers: {
+'content-type': 'application/json',
+},
+method: 'POST',
+});
+return response.json();
+};
+
+const onPictureTaken = async (photo) => {
+const response = await uploadPicture(photo);
+const imageId = response.imageId;
+//const fileName = ${nomm}.jpg;
+const data = {
+image: photo.base64,
+//fileName: fileName,
+};
+setTakePicture(false);
+fetch(SERVER_URL, {
+body: JSON.stringify(data),
+headers: {
+'content-type': 'application/json',
+},
+method: 'POST',
+})
+.then((response) => response.json())
+.then(() => console.log('Picture uploaded successfully'))
+.catch((error) => console.log('Error uploading picture: ', error));
+};
+
+const handleTakePicture = async () => {
+if (cameraPermission) {
+setTakePicture(true);
+} else {
+console.log('Camera permission not granted');
 }
+};
 
+return (
+<View style={styles.container_camera}>
+{cameraPermission === null ? (
+<Text>Waiting for permission...</Text>
+) : cameraPermission === false ? (
+<Text>Permission denied</Text>
+) : (
+<View style={{ flex: 1, width: '100%' }}>
+{takePicture ? (
+<Camera
+style={{ flex: 1 }}
+type={Camera.Constants.Type.back}
+ref={(ref) => {
+this.camera = ref;
+}}
+onPictureTaken={onPictureTaken}
+>
+<TouchableOpacity style={styles.button_camera} onPress={() => this.camera.takePictureAsync({ quality: 0.1, base64: true, exif: false })}>
+<Text style={styles.text_camera}>Take picture</Text>
+</TouchableOpacity>
+</Camera>
+) : (
+<View style={{ flex: 1 }}>
+<TextInput
+style={styles.input_comment}
+placeholder="Add a comment..."
+onChangeText={handleCommentChange}
+onSubmitEditing={handleSubmit}
+value={comment}
+/>
+<TouchableOpacity style={styles.button_camera} onPress={handleTakePicture}>
+<Text style={styles.text_camera}>Take picture</Text>
+</TouchableOpacity>
+</View>
+)}
+</View>
+)}
+</View>
+);
+}

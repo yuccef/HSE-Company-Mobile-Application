@@ -17,8 +17,8 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" >
-        <Stack.Screen name="Qui êtes-vous ?" component={chose} />
-        <Stack.Screen name="LoginAdmin" component={LoginAdminScreen} />
+        <Stack.Screen options={{headerLeft: null}} name="Qui êtes-vous ?" component={chose} />
+        <Stack.Screen options={{headerShown: false}} name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
         <Stack.Screen name="Signaler un risque" component={Mycamera} />
