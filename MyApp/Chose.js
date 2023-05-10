@@ -7,7 +7,7 @@ export default function ChoseScreen({ navigation }) {
   };
 
   const handleWorkerPress = () => {
-    navigation.navigate('Login', { userType: 'worker' });
+    navigation.navigate('LoginEmploye', { userType: 'worker' });
   };
 
   return (

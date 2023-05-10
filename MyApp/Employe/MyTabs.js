@@ -5,7 +5,7 @@ import {Text } from 'react-native';
 
 import HomeScreen from './Tabs/HomeTab/HomeScreen'
 import HSE from './Tabs/HSE_Tab'
-import ReportScreen from './Tabs/OldReportTab'
+import OldReportScreen from './Tabs/OldReportTab'
 import SettingsScreen from './Tabs/SettingTab'
 import {Mycamera} from './Tabs/ReportTab/Report' 
 
@@ -28,7 +28,7 @@ export default function MyTabs() {
       />
       <Tab.Screen
         name="Signalements"
-        component={ReportScreen}
+        component={OldReportScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text style={{ color: focused ? 'green' : color, fontSize: 10 }}>Signalements</Text>
@@ -55,8 +55,7 @@ export default function MyTabs() {
             activeTintColor: 'red',
             inactiveTintColor: 'gray',
           },
-    }}
-/>
+      }}/>
       <Tab.Screen
         name="HSE"
         component={HSE}

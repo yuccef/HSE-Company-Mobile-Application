@@ -6,7 +6,6 @@ export default function button_risk({navigation}) {
     const onPress = () => {
         navigation.navigate('Signaler un risque');
     };
-    
     return (
         <Pressable
             style={styles.button_risk}

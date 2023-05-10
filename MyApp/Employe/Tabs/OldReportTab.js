@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const ReportScreenAdmin = () => {
+const OldReportScreen = () => {
   const [reportData, setReportData] = useState([]);
 
   useEffect(() => {
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ReportScreenAdmin;
+export default OldReportScreen;

@@ -18,23 +18,21 @@ const createTwoButtonAlert = (navigation) => {
   ]);  
 }
 
-
-
 export default function SettingScreen({navigation}) {
   const handlePress = () => {
     createTwoButtonAlert(navigation);
   };
   return (
-      <View style={styles.setting}>
-        <Pressable 
-          style={styles.deconnect}
-          onPress={() => handlePress()}
-        > 
-          <Text style ={styles.text_disconnect} >
-            Se déconnecter
-          </Text>
-          <Entypo name="log-out" size={24} color="red" />
-        </Pressable>
-      </View>
-    );
-    }
+    <View style={styles.setting}>
+      <Pressable 
+        style={styles.deconnect}
+        onPress={() => handlePress()}
+      > 
+        <Text style ={styles.text_disconnect} >
+          Se déconnecter
+        </Text>
+        <Entypo name="log-out" size={24} color="red" />
+      </Pressable>
+    </View>
+  );
+}
