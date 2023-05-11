@@ -13,8 +13,7 @@ import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
 import { nomm } from '../../LoginScreen';
 import { prenomm } from '../../LoginScreen';
 
-const SERVER_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/pictures"
-const SERVER_URL_COMMENTS = "https://bbf0-185-109-254-166.ngrok-free.app/api/worker/comments"
+const SERVER_URL = 'https://bbf0-185-109-254-166.ngrok-free.app/api/worker/report'
 
 
 let photouri = null;
@@ -90,25 +89,25 @@ export class Mycamera extends React.Component {
     console.log('Comment', this.state.comment);
     console.log('categorie', this.state.categorie);
 
-    await this.uploadReport();
-    this.handleSubmit();
+    //await this.uploadReport();
+    await this.handleSubmit();
     this.setSelectedValue();
     this.props.navigation.navigate('Accueil');
     this.init();
   };
   
   // Upload sur le serveur le signalement
-  uploadReport =  () => {
-    return fetch(SERVER_URL, {
-      body: JSON.stringify({
-        image: photo_global
-      }),
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'POST'
-    })
-  }
+  // uploadReport =  () => {
+  //   return fetch(SERVER_URL, {
+  //     body: JSON.stringify({
+  //       image: photo_global
+  //     }),
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     },
+  //     method: 'POST'
+  //   })
+  // }
 
   // Ferme le clavier 
   handlePress = () => {
@@ -126,7 +125,7 @@ export class Mycamera extends React.Component {
     this.setState({ categorie });
   };
     
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const  commentt = this.state.comment;
     const categoriee = this.state.categorie;
     const data = {
@@ -134,15 +133,16 @@ export class Mycamera extends React.Component {
       prenom:prenomm,
       comment: commentt,
       categorie: categoriee,
+      image: photo_global,
     };
-    fetch(SERVER_URL_COMMENTS, {
+    fetch(SERVER_URL, {
       body: JSON.stringify(data),
       headers: {
         'content-type': 'application/json',
       },
       method: 'POST',
     })
-      .then(() => console.log('Comment uploaded successfully'))
+      .then(() => console.log('Report uploaded successfully'))
       .catch((error) => console.log('Error uploading comment: ', error));
   };
 
@@ -247,4 +247,3 @@ export class Mycamera extends React.Component {
     );
   }
 }
-

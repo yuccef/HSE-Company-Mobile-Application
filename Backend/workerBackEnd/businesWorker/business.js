@@ -2,6 +2,11 @@ const dataL = require("../dataWorker/dataLayer"); /** Pick up methods from dataL
 
 
 const business = {
+
+    AddReport :function(data){
+        console.log(data);
+        return dataL.addReport(data);
+    },
     
     AddComment :function(data){
         console.log(data);

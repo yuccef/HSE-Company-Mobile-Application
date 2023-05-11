@@ -15,7 +15,7 @@ const Admins = JSON.parse(dataAdmin);
 
 /////DATA MANAGE FOR COMMENTS////////
 const businessc = require("../workerBackEnd/businesWorker/business");
-const datac = fs.readFileSync('./Backend/workerBackEnd/dataWorker/comments.json');
+const datac = fs.readFileSync('./Backend/workerBackEnd/dataWorker/report.json');
 const customersc = JSON.parse(datac);
 
 
@@ -194,66 +194,67 @@ const apiServ = {
         
 
         
-         ///////////////////////// FOR PICTURES ////////////////////////////////
+        //  ///////////////////////// FOR PICTURES ////////////////////////////////
         
-         let latestPhoto = null;
+        //  let latestPhoto = null;
 
-         app.post('/api/pictures', (req, res) => {
-           // Check that the request body is not empty
-           if (!req.body) {
-             return res.sendStatus(400); 
-           }
+        //  app.post('/api/pictures', (req, res) => {
+        //    // Check that the request body is not empty
+        //    if (!req.body) {
+        //      return res.sendStatus(400); 
+        //    }
          
-           console.log('got photo');
+        //    console.log('got photo');
          
-           // Update the latest photo and respond happily
-           latestPhoto = JSON.stringify(req.body.image);
-           console.log(latestPhoto);
-           console.log(req.body.comment);
-           res.sendStatus(200);
-         });
+        //    // Update the latest photo and respond happily
+        //    latestPhoto = JSON.stringify(req.body.image);
+        //    console.log(latestPhoto);
+        //    console.log(req.body.comment);
+        //    res.sendStatus(200);
+        //  });
          
-         // View latest image
-         app.get('/api/pictures', (req, res) => {
-           // Does this session have an image yet?
-           console.log(latestPhoto);
-           if (!latestPhoto) {
-             return res.status(404).send("Nothing here yet");
-           }
+        //  // View latest image
+        //  app.get('/api/pictures', (req, res) => {
+        //    // Does this session have an image yet?
+        //    console.log(latestPhoto);
+        //    if (!latestPhoto) {
+        //      return res.status(404).send("Nothing here yet");
+        //    }
          
-           console.log('sending photo');
+        //    console.log('sending photo');
          
-           try {
-             // Send the image
-             var img = Buffer.from(JSON.parse(latestPhoto), 'base64');
+        //    try {
+        //      // Send the image
+        //      var img = Buffer.from(JSON.parse(latestPhoto), 'base64');
          
-             // Set the response headers before sending the response
-             res.setHeader('Content-Type', 'image/png');
-             res.setHeader('Content-Length', img.length);
-             let fileName="testyoussef"
-             // Save the image to file system
-             fs.writeFile(`./signalPictures/${fileName}.png`, img, (err) => {
-               if (err) throw err;
-               console.log('Image saved to file system!');
-             });
+        //      // Set the response headers before sending the response
+        //      res.setHeader('Content-Type', 'image/png');
+        //      res.setHeader('Content-Length', img.length);
+        //      let fileName="testyoussef"
+        //      // Save the image to file system
+        //      fs.writeFile(`./signalPictures/${fileName}.png`, img, (err) => {
+        //        if (err) throw err;
+        //        console.log('Image saved to file system!');
+        //      });
          
-             res.send(img);
-           } catch (e) {
-             // Log the error and stay alive
-             console.log(e);
-             return res.sendStatus(500);
-           }
-         });
+        //      res.send(img);
+        //    } catch (e) {
+        //      // Log the error and stay alive
+        //      console.log(e);
+        //      return res.sendStatus(500);
+        //    }
+        //  });
          
 
 
-         ///////////////////////// FOR COMMENTS////////////////////////////////
+
+ ///////////////////////// FOR REPORTS////////////////////////////////
 
         /**Create a route to Get Database with all the Information of the people registered */
-        app.get('/api/worker/comments', (req, res) => {
-          fs.readFile('./Backend/workerBackEnd/dataWorker/comments.json', (err, data) => {
+        app.get('/api/worker/report', (req, res) => {
+          fs.readFile('./Backend/workerBackEnd/dataWorker/report.json', (err, data) => {
           if (err) {
-          console.error(err);
+            console.error(err);
           return res.sendStatus(500);
              }
            res.json(JSON.parse(data));
@@ -263,9 +264,9 @@ const apiServ = {
 
         /**Create a route for Adding a user */
          /**the POST option is for Adding data in the server */
-        app.post('/api/worker/comments', (req, res) => {
-           businessc.AddComment(req.body);
-           fs.readFile('./Backend/workerBackEnd/dataWorker/comments.json', (err) => {
+        app.post('/api/worker/report', (req, res) => {
+           businessc.AddReport(req.body);
+           fs.readFile('./Backend/workerBackEnd/dataWorker/report.json', (err) => {
            if (err) {
               res.status(500).send('Erreur lors de la lecture du fichier customers.json');
            } else {
@@ -281,6 +282,44 @@ const apiServ = {
 
 
 
+
+
+
+
+//          ///////////////////////// FOR COMMENTS////////////////////////////////
+
+//         /**Create a route to Get Database with all the Information of the people registered */
+//         app.get('/api/worker/comments', (req, res) => {
+//           fs.readFile('./Backend/workerBackEnd/dataWorker/comments.json', (err, data) => {
+//           if (err) {
+//           console.error(err);
+//           return res.sendStatus(500);
+//              }
+//            res.json(JSON.parse(data));
+//          });
+//        });    
+
+
+//         /**Create a route for Adding a user */
+//          /**the POST option is for Adding data in the server */
+//         app.post('/api/worker/comments', (req, res) => {
+//            businessc.AddComment(req.body);
+//            fs.readFile('./Backend/workerBackEnd/dataWorker/comments.json', (err) => {
+//            if (err) {
+//               res.status(500).send('Erreur lors de la lecture du fichier customers.json');
+//            } else {
+//               res.json(customersc);
+//              }
+//           });            
+//         });
+
+
+
+
+
+
+
+// */
 
 
 

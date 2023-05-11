@@ -1,6 +1,6 @@
 const fs = require("fs");
 const fichier = "./Backend/workerBackEnd/dataWorker/signin.json"; 
-const fichierr = "./Backend/workerBackEnd/dataWorker/comments.json"; 
+const fichierr = "./Backend/workerBackEnd/dataWorker/report.json"; 
 
 
 
@@ -33,6 +33,19 @@ let dataLayer = {
             if(err) throw err;
             
             console.log("Commentaire ajouté");
+        });
+    },
+
+
+    addReport: function (data){
+        const users = fs.readFileSync(fichierr); 
+        const tab= JSON.parse(users);
+        tab.push(data);
+        var newdata = JSON.stringify(tab);
+        fs.writeFile("./Backend/workerBackEnd/dataWorker/report.json", newdata, err => {
+            // error checking
+            if(err) throw err;
+            console.log("Signalement ajouté");
         });
     },
 }

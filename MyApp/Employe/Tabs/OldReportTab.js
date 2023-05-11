@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const OldReportScreen = () => {
   const [reportData, setReportData] = useState([]);
 
   useEffect(() => {
-    fetch('https://bbf0-185-109-254-166.ngrok-free.app/api/worker/comments')
+    fetch('https://bbf0-185-109-254-166.ngrok-free.app/api/worker/report')
       .then(response => response.json())
       .then(data => setReportData(data))
       .catch(error => console.log(error));
@@ -24,10 +24,17 @@ const OldReportScreen = () => {
       </LinearGradient>
       <ScrollView style={styles.scrollContainer}>
         {reportData.map((report, index) => (
-          <View style={styles.reportContainer} key={index}>
-            <Text style={styles.reportName}>{report.nom} {report.prenom} </Text>
+                   <View key={index} style={styles.reportContainer}>
+                   <Text style={styles.reportName}>{report.nom} {report.prenom}</Text>
             <Text style={styles.reportCategorie}>{report.categorie}</Text>
             <Text style={styles.reportComment}>{report.comment}</Text>
+            {report.image && report.image.uri && (
+            <Image
+              source={{ uri: report.image.uri }}
+              style={{ width: '100%', height: 300 }}
+            />
+            )}
+            {console.log(report.image)}
           </View>
         ))}
       </ScrollView>
