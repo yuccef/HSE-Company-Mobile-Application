@@ -19,5 +19,11 @@ const business = {
         return dataL.addUser(data);
     },
 
+      /**To Add a user */
+      DelReport :function(data)  {
+        console.log(data);
+        return dataL.Del(data);
+    },
+
 }
 module.exports = business;

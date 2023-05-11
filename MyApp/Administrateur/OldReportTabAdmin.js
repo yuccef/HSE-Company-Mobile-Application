@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity, TextInput , Image} from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, TextInput, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const API_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/admin/answers";
+const API_REPORT_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/worker/report";
+const API_ANSWER_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/admin/answers";
+
 import { nomm } from './LoginAdminScreen';
 import { prenomm } from './LoginAdminScreen';
+
 const OldReportScreen = ({ navigation }) => {
   const [reportData, setReportData] = useState([]);
 
   useEffect(() => {
-    fetch('https://bbf0-185-109-254-166.ngrok-free.app/api/worker/report')
+    fetch(API_REPORT_URL)
       .then(response => response.json())
       .then(data => setReportData(data))
       .catch(error => console.log(error));
@@ -37,24 +40,32 @@ const OldReportScreen = ({ navigation }) => {
     setExpandedIndex(null);
     setNewComment("");
     const reportanswer = {
+      nomWorker: report.nom,
+      prenomWorker: report.prenom,
+      commentWorker: report.comment,
+      categorieWorker: report.categorie,
       nom: nomm,
       prenom: prenomm,
       answer: newComment,
       état: report.checked,
     };
-    fetch(API_URL, {
+    fetch(API_ANSWER_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(reportanswer)  /**the body or the data to push is "user" */
-    }).then(() => {
-      // remove the report from the reportData array
-      const updatedReportData = [...reportData];
-      updatedReportData.splice(updatedReportData.indexOf(report), 1);
+      body: JSON.stringify(reportanswer)
+    })
+  };
+
+  const handleDeleteReport = (comment) => {
+    fetch(`https://bbf0-185-109-254-166.ngrok-free.app/api/worker/report?comment=${comment}`, {
+      method: 'DELETE'
+    })
+    .finally(() => {
+      const updatedReportData = reportData.filter(report => report.comment !== comment);
       setReportData(updatedReportData);
     });
-
   };
 
   return (
@@ -116,8 +127,12 @@ const OldReportScreen = ({ navigation }) => {
                />
 <TouchableOpacity
 style={styles.sendButton}
-onPress={() => handleSendComment(report)}
->
+onPress={() => {
+  
+      handleSendComment(report);
+      handleDeleteReport(report.comment);
+    
+  }}>
 <Text style={styles.sendButtonText}>Envoyer</Text>
 </TouchableOpacity>
 </View>

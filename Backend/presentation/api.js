@@ -324,6 +324,31 @@ const apiServ = {
 
 
 
+// app.delete('/api/worker/report/:nom/:prenom', (req, res) => {
+//   const nom = req.params.nom;
+//   const prenom = req.params.prenom;
+//   // votre code pour supprimer le rapport avec le nom et le prénom spécifiés
+//   // (par exemple, en utilisant une fonction comme `deleteReportByNomPrenom(nom, prenom)`)
+//   res.send(`Le rapport avec le nom ${prenom} ${nom} a été supprimé.`);
+// // });
+// app.delete('/api/worker/report', (req, res) => {
+//   const nom = req.query.nom;
+//   const prenom = req.query.prenom;
+//   // votre code pour supprimer le rapport avec le nom et prénom spécifiés
+//   res.send(`Le rapport avec le nom ${prenom} ${nom} a été supprimé.`);
+// });
+
+app.delete('/api/worker/report', (req, res) => {
+  businessc.DelReport(req.query.comment);
+  fs.readFile('./Backend/workerBackEnd/dataWorker/report.json', (err, data) => {
+      if (err) {
+          res.status(500).send('Erreur lors de la lecture du fichier report.json');
+      } else {
+          res.json(customersc);
+      }
+  });
+});
+
 
 
 

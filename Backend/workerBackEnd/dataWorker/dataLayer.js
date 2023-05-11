@@ -48,6 +48,25 @@ let dataLayer = {
             console.log("Signalement ajouté");
         });
     },
+    Del : function(data){
+        //get data from json file
+        const users = fs.readFileSync(fichierr);
+        //parse to object
+        let newCustomer = JSON.parse(users);
+        //findIndex permet de retrouver un user en fonction du param removeuser
+        const index = newCustomer.findIndex(user => user.comment === data );
+        
+        if (index != -1) {
+            //puis de le retirer s'il existe 
+            newCustomer.splice(index, 1);
+            //et de reecrire le fichier
+            fs.writeFileSync(fichierr, JSON.stringify(newCustomer, null, 2));
+            console.log("Signalment supprimé .");
+            return 1;
+        } else 
+        console.log("Signalement non trouvé .");
+          return 0;        
+    },
 }
 
 /**export the class to use it on other files */
