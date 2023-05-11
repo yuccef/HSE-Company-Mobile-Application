@@ -12,7 +12,7 @@ const dataAdmin = fs.readFileSync('./Backend/adminBackEnd/dataAdmin/signin.json'
 const Admins = JSON.parse(dataAdmin);
 
 const businessc = require("../workerBackEnd/businesWorker/business");
-const datac = fs.readFileSync('./Backend/workerBackEnd/dataWorker/comments.json');
+const datac = fs.readFileSync('./Backend/workerBackEnd/dataWorker/reports.json');
 const customersc = JSON.parse(datac);
 
 const bodyParser = require('body-parser');
@@ -36,8 +36,6 @@ const apiServ = {
       }));
 
       ///////////////////////// FOR WORKERS ////////////////////////////////
-
-
 
         /**Create a route to Get Database with all the Information of the people registered */
          app.get('/api/customers', (req, res) => {
@@ -153,18 +151,29 @@ const apiServ = {
          });
 
         
-
+/*
         
          ///////////////////////// FOR PICTURES ////////////////////////////////
         
          let latestPhoto = null;
+
+
+         app.get('/api/pictures/test', (req, res) => {
+          if (latestPhoto) {
+            // Send the latest photo as a response
+            res.send(latestPhoto.uri);
+          } else {
+            // If no latest photo is available, send a 404 response
+            res.sendStatus(404);
+          }
+        });
 
          app.post('/api/pictures', (req, res) => {
            // Check that the request body is not empty
            if (!req.body) {
              return res.sendStatus(400); 
            }
-         
+    
            console.log('got photo');
          
            // Update the latest photo and respond happily
@@ -206,15 +215,15 @@ const apiServ = {
            }
          });
          
+*/
 
-
-         ///////////////////////// FOR COMMENTS////////////////////////////////
+         ///////////////////////// FOR REPORTS////////////////////////////////
 
         /**Create a route to Get Database with all the Information of the people registered */
-        app.get('/api/worker/comments', (req, res) => {
-          fs.readFile('./Backend/workerBackEnd/dataWorker/comments.json', (err, data) => {
+        app.get('/api/worker/report', (req, res) => {
+          fs.readFile('./Backend/workerBackEnd/dataWorker/reports.json', (err, data) => {
           if (err) {
-          console.error(err);
+            console.error(err);
           return res.sendStatus(500);
              }
            res.json(JSON.parse(data));
@@ -224,9 +233,9 @@ const apiServ = {
 
         /**Create a route for Adding a user */
          /**the POST option is for Adding data in the server */
-        app.post('/api/worker/comments', (req, res) => {
-           businessc.AddComment(req.body);
-           fs.readFile('./Backend/workerBackEnd/dataWorker/comments.json', (err) => {
+        app.post('/api/worker/report', (req, res) => {
+           businessc.AddReport(req.body);
+           fs.readFile('./Backend/workerBackEnd/dataWorker/reports.json', (err) => {
            if (err) {
               res.status(500).send('Erreur lors de la lecture du fichier customers.json');
            } else {

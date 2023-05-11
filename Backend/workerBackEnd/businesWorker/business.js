@@ -3,9 +3,9 @@ const dataL = require("../dataWorker/dataLayer"); /** Pick up methods from dataL
 
 const business = {
     
-    AddComment :function(data){
+    AddReport :function(data){
         console.log(data);
-        return dataL.addComment(data);
+        return dataL.addReport(data);
     },
 
     /**To Add a user */
