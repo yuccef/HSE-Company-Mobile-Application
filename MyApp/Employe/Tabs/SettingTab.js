@@ -1,5 +1,5 @@
 import { Pressable, Text, View, } from 'react-native';
-import {styles} from '../Styles'
+import {styles} from '../../Styles/Styles'
 import { Entypo } from '@expo/vector-icons';
 import { Alert} from 'react-native';
 
@@ -13,28 +13,26 @@ const createTwoButtonAlert = (navigation) => {
     },
     {
       text: 'Oui',
-       onPress: () => navigation.navigate('Qui êtes-vous ?'),
+       onPress: () => navigation.navigate('Qui êtes-vous ?', { headerShown: false }),
     }
   ]);  
 }
-
-
 
 export default function SettingScreen({navigation}) {
   const handlePress = () => {
     createTwoButtonAlert(navigation);
   };
   return (
-      <View style={styles.setting}>
-        <Pressable 
-          style={styles.deconnect}
-          onPress={() => handlePress()}
-        > 
-          <Text style ={styles.text_disconnect} >
-            Se déconnecter
-          </Text>
-          <Entypo name="log-out" size={24} color="red" />
-        </Pressable>
-      </View>
-    );
-    }
+    <View style={styles.setting}>
+      <Pressable 
+        style={styles.deconnect}
+        onPress={() => handlePress()}
+      > 
+        <Text style ={styles.text_disconnect} >
+          Se déconnecter
+        </Text>
+        <Entypo name="log-out" size={24} color="red" />
+      </Pressable>
+    </View>
+  );
+}

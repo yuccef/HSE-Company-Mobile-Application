@@ -7,7 +7,7 @@ export default function ChoseScreen({ navigation }) {
   };
 
   const handleWorkerPress = () => {
-    navigation.navigate('Login', { userType: 'worker' });
+    navigation.navigate('LoginEmploye', { userType: 'worker' });
   };
 
   return (
@@ -17,14 +17,11 @@ export default function ChoseScreen({ navigation }) {
       </TouchableOpacity>
       <View style={styles.separator}></View>
       <TouchableOpacity style={styles.workerButton} onPress={handleWorkerPress}>
-        <Text style={styles.buttonText}>Ouvrier</Text>
+        <Text style={styles.buttonText}>Employé</Text>
       </TouchableOpacity>
     </View>
   );
 }
-ChoseScreen.options = {
-    headerShown: false
-  };
 
 const styles = StyleSheet.create({
   container: {

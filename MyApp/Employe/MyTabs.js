@@ -3,21 +3,17 @@ import { AntDesign, Entypo, MaterialIcons, MaterialCommunityIcons } from '@expo/
 import {Text } from 'react-native';
 
 
-import HomeScreen from './Screens/HomeScreenAdmin'
-import HSE from './Screens/HSE'
-import ReportScreenAdmin from './Screens/ReportScreen'
-import SettingsScreen from './Screens/SettingScreen'
-import button_camera from './button_risk';
-import {styles} from './Styles'
-import {Mycamera} from './Report/Report' 
-import {ImageScreen}  from './Report/ImageScreen'
-import ButtonRisk from './button_risk';
+import HomeScreen from './Tabs/HomeTab/HomeScreen'
+import HSE from './Tabs/HSE_Tab'
+import OldReportScreen from './Tabs/OldReportTab'
+import SettingsScreen from './Tabs/SettingTab'
+import {Mycamera} from './Tabs/ReportTab/Report' 
 
 const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="Accueil">
       <Tab.Screen 
         name="Accueil"
         component={HomeScreen}
@@ -32,7 +28,7 @@ export default function MyTabs() {
       />
       <Tab.Screen
         name="Signalements"
-        component={ReportScreenAdmin}
+        component={OldReportScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text style={{ color: focused ? 'green' : color, fontSize: 10 }}>Signalements</Text>
@@ -45,7 +41,21 @@ export default function MyTabs() {
             inactiveTintColor: 'gray',
           },
         }}/>
-
+      <Tab.Screen
+        name="Signaler un risque"
+        component={Mycamera}
+        options={{
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ textAlign: 'center', color: focused ? 'red' : color, fontSize: 8 }}>Signaler un risque</Text>
+          ),
+          tabBarIcon: ({ focused, color, size }) => (
+              <AntDesign name="warning" size={size} color={focused ? 'red' : color} />
+          ),
+          tabBarOptions: {
+            activeTintColor: 'red',
+            inactiveTintColor: 'gray',
+          },
+      }}/>
       <Tab.Screen
         name="HSE"
         component={HSE}
@@ -76,13 +86,6 @@ export default function MyTabs() {
             inactiveTintColor: 'gray',
           },
         }}/>
-
-
-
     </Tab.Navigator>
-
   );
 }
-MyTabs.options = {
-  headerShown: false
-};

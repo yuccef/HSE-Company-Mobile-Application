@@ -3,15 +3,10 @@ import { AntDesign, Entypo, MaterialIcons, MaterialCommunityIcons } from '@expo/
 import {Text } from 'react-native';
 
 
-import HomeScreen from './Screens/HomeScreen'
-import HSE from './Screens/HSE'
-import ReportScreen from './Screens/ReportScreen'
-import SettingsScreen from './Screens/SettingScreen'
-import button_camera from './button_risk';
-import {styles} from './Styles'
-import {Mycamera} from './Report/Report' 
-import {ImageScreen}  from './Report/ImageScreen'
-import ButtonRisk from './button_risk';
+import HomeScreen from './HomeTabAdmin'
+import HSE from '../Employe/Tabs/HSE_Tab'
+import ReportScreenAdmin from '../Employe/Tabs/OldReportTab'
+import SettingsScreen from '../Employe/Tabs/SettingTab'
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +27,7 @@ export default function MyTabs() {
       />
       <Tab.Screen
         name="Signalements"
-        component={ReportScreen}
+        component={ReportScreenAdmin}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text style={{ color: focused ? 'green' : color, fontSize: 10 }}>Signalements</Text>
@@ -45,22 +40,7 @@ export default function MyTabs() {
             inactiveTintColor: 'gray',
           },
         }}/>
-      <Tab.Screen
-        name="Signaler un risque"
-        component={Mycamera}
-        options={{
-          tabBarLabel: ({ focused, color }) => (
-            <Text style={{ textAlign: 'center', color: focused ? 'red' : color, fontSize: 8 }}>Signaler un risque</Text>
-          ),
-          tabBarIcon: ({ focused, color, size }) => (
-              <AntDesign name="warning" size={size} color={focused ? 'red' : color} />
-          ),
-          tabBarOptions: {
-            activeTintColor: 'red',
-            inactiveTintColor: 'gray',
-          },
-    }}
-/>
+
       <Tab.Screen
         name="HSE"
         component={HSE}
@@ -91,13 +71,6 @@ export default function MyTabs() {
             inactiveTintColor: 'gray',
           },
         }}/>
-
-
-
     </Tab.Navigator>
-
   );
 }
-MyTabs.options = {
-  headerShown: false
-};

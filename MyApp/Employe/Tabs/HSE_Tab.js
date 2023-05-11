@@ -1,5 +1,5 @@
 import {SectionList, StyleSheet, Text, View} from 'react-native';
-import {styles} from '../Styles'
+import {styles} from '../../Styles/Styles'
 import React from 'react';
 
 export default function HSE() {
@@ -46,9 +46,6 @@ export default function HSE() {
       );
     
   }
-  HSE.options = {
-    headerShown: false
-  };
 
   
 

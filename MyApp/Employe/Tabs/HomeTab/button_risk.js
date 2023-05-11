@@ -1,12 +1,11 @@
 import { Pressable, Text} from 'react-native';
 import { AntDesign} from '@expo/vector-icons';
-import { styles} from './Styles';
+import { styles} from '../../../Styles/Styles';
 
 export default function button_risk({navigation}) {
     const onPress = () => {
         navigation.navigate('Signaler un risque');
     };
-    
     return (
         <Pressable
             style={styles.button_risk}

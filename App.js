@@ -2,26 +2,26 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {Mycamera} from './MyApp/Report/Report' 
-import {ImageScreen}  from './MyApp/Report/ImageScreen'
-import MyTabs from './MyApp/MyTabs';
-import LoginScreen from './MyApp/Screens/LoginScreen';
-import LoginAdminScreen from './MyApp/Screens/LoginAdminScreen';
-import chose from './MyApp/Screens/chose'
-import {styles} from './MyApp/Styles'
+import InscriptionScreen from './MyApp/Employe/Inscription'
+import {ImageScreen}  from './MyApp/Employe/Tabs/ReportTab/ImageScreen'
+import MyTabs from './MyApp/Employe/MyTabs';
+import MyTabsAdmin from './MyApp/Administrateur/MyTabsAdmin';
+import LoginScreen from './MyApp/Employe/LoginScreen';
+import LoginAdminScreen from './MyApp/Administrateur/LoginAdminScreen';
+import Chose from './MyApp/Chose'
+
 const Stack = createNativeStackNavigator();
-
-
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" >
-        <Stack.Screen name="Qui êtes-vous ?" component={chose} />
-        <Stack.Screen options={{headerShown: false}} name="LoginAdmin" component={LoginAdminScreen} />
-        <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen options={{headerLeft: null}} name="Qui êtes-vous ?" component={Chose} />
+        <Stack.Screen options={{headerLeft: null}} name="LoginEmploye" component={LoginScreen} />
+        <Stack.Screen options={{headerLeft: null}} name="LoginAdmin" component={LoginAdminScreen} />
+        <Stack.Screen name="Inscription" component={InscriptionScreen} />
         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
-        <Stack.Screen name="Signaler un risque" component={Mycamera} />
+        <Stack.Screen options={{headerShown: false}} name="MyTabsAdmin" component={MyTabsAdmin} />
         <Stack.Screen name="Photo" component={ImageScreen}/>
       </Stack.Navigator>
     </NavigationContainer>

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const ReportScreenAdmin = () => {
+const OldReportScreen = () => {
   const [reportData, setReportData] = useState([]);
 
   useEffect(() => {
-    fetch('https://59fa-37-170-28-157.ngrok-free.app/api/worker/comments')
+    fetch('https://bbf0-185-109-254-166.ngrok-free.app/api/worker/comments')
       .then(response => response.json())
       .then(data => setReportData(data))
       .catch(error => console.log(error));
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ReportScreenAdmin;
+export default OldReportScreen;
