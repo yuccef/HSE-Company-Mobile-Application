@@ -5,7 +5,7 @@ import {Text } from 'react-native';
 
 import HomeScreen from './HomeTabAdmin'
 import HSE from '../Employe/Tabs/HSE_Tab'
-import ReportScreenAdmin from '../Employe/Tabs/OldReportTab'
+import ReportScreenAdmin from './OldReportTabAdmin'
 import SettingsScreen from '../Employe/Tabs/SettingTab'
 
 const Tab = createBottomTabNavigator();

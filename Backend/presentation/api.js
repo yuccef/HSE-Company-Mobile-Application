@@ -3,20 +3,30 @@ const app = express();
 const fs = require('fs');
 const cors = require('cors');
 
+/////DATA MANAGE FOR WORKERS////////
 const business = require("../workerBackEnd/businesWorker/business");
 const data = fs.readFileSync('./Backend/workerBackEnd/dataWorker/signin.json');
 const customers = JSON.parse(data);
 
+/////DATA MANAGE FOR ADMINS////////
 const businesAdmin = require("../adminBackEnd/businessAdmin/business");
 const dataAdmin = fs.readFileSync('./Backend/adminBackEnd/dataAdmin/signin.json');
 const Admins = JSON.parse(dataAdmin);
 
+/////DATA MANAGE FOR COMMENTS////////
 const businessc = require("../workerBackEnd/businesWorker/business");
 const datac = fs.readFileSync('./Backend/workerBackEnd/dataWorker/comments.json');
 const customersc = JSON.parse(datac);
 
-const bodyParser = require('body-parser');
 
+/////DATA MANAGE FOR ANSWERS////////
+const businesAdmina = require("../adminBackEnd/businessAdmin/business");
+const dataAdmina = fs.readFileSync('./Backend/adminBackEnd/dataAdmin/answers.json');
+const Adminsa = JSON.parse(dataAdmina);
+
+
+
+const bodyParser = require('body-parser');
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
 
@@ -151,6 +161,35 @@ const apiServ = {
               }
            });            
          });
+
+
+        
+
+                 /**Create a route to Get Database with all the Information of the people registered */
+        app.get('/api/admin/answers', (req, res) => {
+          fs.readFile('./Backend/adminBackEnd/dataAdmin/answers.json', (err, data) => {
+          if (err) {
+          console.error(err);
+          return res.sendStatus(500);
+             }
+           res.json(JSON.parse(data));
+         });
+       });    
+
+
+        /**Create a route for Adding a user */
+         /**the POST option is for Adding data in the server */
+        app.post('/api/admin/answers', (req, res) => {
+           businesAdmina.AddAnswer(req.body);
+           fs.readFile('./Backend/adminBackEnd/dataAdmin/answers.json', (err) => {
+           if (err) {
+              res.status(500).send('Erreur lors de la lecture du fichier answers.json');
+           } else {
+              res.json(Adminsa);
+             }
+          });            
+        });
+        
 
         
 

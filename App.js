@@ -6,6 +6,7 @@ import InscriptionScreen from './MyApp/Employe/Inscription'
 import {ImageScreen}  from './MyApp/Employe/Tabs/ReportTab/ImageScreen'
 import MyTabs from './MyApp/Employe/MyTabs';
 import MyTabsAdmin from './MyApp/Administrateur/MyTabsAdmin';
+
 import LoginScreen from './MyApp/Employe/LoginScreen';
 import LoginAdminScreen from './MyApp/Administrateur/LoginAdminScreen';
 import Chose from './MyApp/Chose'

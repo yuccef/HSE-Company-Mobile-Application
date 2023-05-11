@@ -10,5 +10,10 @@ const business = {
         return dataL.addUser(data);
     },
 
+    AddAnswer :function(data)  {
+        console.log(data);
+        return dataL.addAnswer(data);
+    },
+
 }
 module.exports = business;

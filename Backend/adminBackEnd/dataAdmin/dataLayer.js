@@ -1,5 +1,6 @@
 const fs = require("fs");
 const fichier = "./Backend/adminBackend/dataAdmin/signin.json"; 
+const fichierr = "./Backend/adminBackend/dataAdmin/answers.json"; 
 
 
 
@@ -18,6 +19,19 @@ let dataLayer = {
             if(err) throw err;
             
             console.log("Utilisateur ajouté");
+        });
+    },
+
+    addAnswer: function (data){
+        const users = fs.readFileSync(fichierr); 
+        const tab= JSON.parse(users);
+        tab.push(data);
+        var newdata = JSON.stringify(tab);
+        fs.writeFile("./Backend/adminBackend/dataAdmin/answers.json", newdata, err => {
+            // error checking
+            if(err) throw err;
+            
+            console.log("Réponse ajouté");
         });
     },
 
