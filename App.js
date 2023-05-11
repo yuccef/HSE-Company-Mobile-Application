@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import MyTabsAdmin from './MyApp/Administrateur/MyTabsAdmin';
 import InscriptionScreen from './MyApp/Employe/Inscription'
 import {ImageScreen}  from './MyApp/Employe/Tabs/ReportTab/ImageScreen'
 import MyTabs from './MyApp/Employe/MyTabs';
@@ -19,6 +20,7 @@ function App() {
         <Stack.Screen options={{headerLeft: null}} name="LoginEmploye" component={LoginScreen} />
         <Stack.Screen options={{headerLeft: null}} name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
+        <Stack.Screen options={{headerShown: false}} name="MyTabsAdmin" component={MyTabsAdmin} />
         <Stack.Screen options={{headerShown: false}} name="MyTabs" component={MyTabs} />
         <Stack.Screen name="Photo" component={ImageScreen}/>
       </Stack.Navigator>

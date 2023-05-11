@@ -6,7 +6,7 @@ const OldReportScreen = () => {
   const [reportData, setReportData] = useState([]);
 
   useEffect(() => {
-    fetch('https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/worker/comments')
+    fetch('https://8a30-2a01-e0a-20f-1240-e175-cb44-66b8-c80.ngrok-free.app/api/worker/comments')
       .then(response => response.json())
       .then(data => setReportData(data))
       .catch(error => console.log(error));

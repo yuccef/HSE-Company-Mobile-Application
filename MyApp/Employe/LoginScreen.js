@@ -10,8 +10,8 @@ const Stack = createNativeStackNavigator();
 let nomm, prenomm;
 
 /**URLs of Databases */
-const API_URL = "https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/customers";
-const API_URL2 = "https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/customers/sign";
+const API_URL = "https://8a30-2a01-e0a-20f-1240-e175-cb44-66b8-c80.ngrok-free.app/api/customers";
+const API_URL2 = "https://8a30-2a01-e0a-20f-1240-e175-cb44-66b8-c80.ngrok-free.app/api/customers/sign";
 
 /**ERRORS*/
 const ERROR_MESSAGES = {

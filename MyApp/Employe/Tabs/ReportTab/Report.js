@@ -13,8 +13,8 @@ import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
 import { nomm } from '../../LoginScreen';
 import { prenomm } from '../../LoginScreen';
 
-const SERVER_URL = 'https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/pictures'
-const SERVER_URL_COMMENTS = 'https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/worker/comments';
+const SERVER_URL = 'https://8a30-2a01-e0a-20f-1240-e175-cb44-66b8-c80.ngrok-free.app/api/pictures'
+const SERVER_URL_COMMENTS = 'https://8a30-2a01-e0a-20f-1240-e175-cb44-66b8-c80.ngrok-free.app/api/worker/comments';
 
 
 let photouri = null;

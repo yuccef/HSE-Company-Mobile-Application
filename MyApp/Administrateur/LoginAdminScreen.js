@@ -6,8 +6,8 @@ import { styles } from '../Styles/style';
 let nomm,prenomm;
 
 /**URLs of Databases */
-const API_URL = "https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/admin";
-const API_URL2 = "https://a326-2a01-e0a-20f-1240-34e5-657e-c2b2-b4fb.ngrok-free.app/api/admin/sign";
+const API_URL = "https://8a30-2a01-e0a-20f-1240-e175-cb44-66b8-c80.ngrok-free.app/api/admin";
+const API_URL2 = "https://8a30-2a01-e0a-20f-1240-e175-cb44-66b8-c80.ngrok-free.app/api/admin/sign";
 
 /**ERRORS*/
 const ERROR_MESSAGES = {
@@ -59,7 +59,7 @@ const LoginAdminScreen = ({ navigation }) => {
       if (foundUser) {
         nomm= foundUser.nom;
         prenomm= foundUser.prenom;
-        navigation.navigate('MyTabs')
+        navigation.navigate('MyTabsAdmin')
             }
       /**if not return Alert*/
       else {
