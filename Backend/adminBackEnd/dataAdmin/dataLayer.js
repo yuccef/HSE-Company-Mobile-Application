@@ -3,8 +3,6 @@ const fichier = "./Backend/adminBackend/dataAdmin/signin.json";
 const fichierr = "./Backend/adminBackend/dataAdmin/answers.json"; 
 
 
-
-
 /**dataLayer is a class that contains several methods for database manipulation */
 let dataLayer = {
 
@@ -22,6 +20,7 @@ let dataLayer = {
         });
     },
 
+    /**method to add new answer  */
     addAnswer: function (data){
         const users = fs.readFileSync(fichierr); 
         const tab= JSON.parse(users);

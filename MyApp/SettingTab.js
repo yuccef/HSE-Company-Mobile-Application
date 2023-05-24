@@ -1,5 +1,5 @@
 import { Pressable, Text, View, } from 'react-native';
-import {styles} from '../../Styles/Styles'
+import {styles} from './Styles/Styles'
 import { Entypo } from '@expo/vector-icons';
 import { Alert} from 'react-native';
 

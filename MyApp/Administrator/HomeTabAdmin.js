@@ -1,7 +1,10 @@
 import {  Text, View, } from 'react-native';
 import {styles} from '../Styles/Styles'
-import { nomm } from './LoginAdminScreen';
-import { prenomm } from './LoginAdminScreen';
+
+/**Import Some Data from LoginAdminScreen file */
+import { nomm } from './LoginScreenAdmin';
+import { prenomm } from './LoginScreenAdmin';
+
 
 export default function HomeScreen({navigation}) {
     return (
@@ -10,8 +13,6 @@ export default function HomeScreen({navigation}) {
       </View>
     );
   }
-  HomeScreen.options = {
-    headerShown: false
-  };
+
 
   

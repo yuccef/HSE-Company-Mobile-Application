@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 
 const API_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/admin/answers";
 const REPORT_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/worker/report";

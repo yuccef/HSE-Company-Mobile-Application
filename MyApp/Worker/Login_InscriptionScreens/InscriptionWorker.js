@@ -2,15 +2,19 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert } from 'react-native';
 
-import { styles } from '../Styles/style';
+import { styles } from './../../Styles/Styles';
 
-const API_URL2 = "https://bbf0-185-109-254-166.ngrok-free.app/api/customers/sign";
+/**URLs of Databases (workers) */
+const API_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/worker";
 
 
+
+/**Verificate if the email is valide */
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
+
 
 /**Verificate the leght of password (>6) */
 const isValidPassword = (password) => {
@@ -54,7 +58,7 @@ const InscriptionScreen = ({ navigation }) => {
     /**Create User by adding this data on the server using the option POST */
     const createUser = async (user) => {
       try {
-      const response = await fetch(API_URL2, {
+      const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json'

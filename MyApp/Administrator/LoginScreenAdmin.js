@@ -1,18 +1,14 @@
 /**Import parametres*/
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { styles } from '../Styles/Styles';
 
-import { styles } from '../Styles/style';
-
-const Stack = createNativeStackNavigator();
-
-let nomm, prenomm;
+let nomm,prenomm;
 
 /**URLs of Databases */
-const API_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/customers/sign";
+const API_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/admin";
 
-/**ERRORS*/
+/**Errors Messages*/
 const ERROR_MESSAGES = {
   EMAIL: "Veuillez entrer une adresse e-mail valide.",
   PASSWORD: "Le mot de passe doit contenir au moins 6 caractères.",
@@ -31,7 +27,7 @@ const isValidPassword = (password) => {
 };
 
 /**LoginScreen Class where we put our email and Password  */
-const LoginScreen = ({ navigation }) => {
+const LoginAdminScreen = ({ navigation }) => {
 
   /**Parametres*/
   const [email, setEmail] = useState('');
@@ -49,33 +45,39 @@ const LoginScreen = ({ navigation }) => {
 
   /**The function to  Verify if this email and password exist in the DataBase( on the server created in Backend) */
   const checkUser = async (email, password) => {
+    
     try {
       const response = await fetch(API_URL);
       const users = await response.json();
       const foundUser = users.find(user => user.email === email && user.password === password);/**The verificaton is here  */
+       
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
         nomm= foundUser.nom;
         prenomm= foundUser.prenom;
-        navigation.navigate('MyTabs')
-            }
+        navigation.navigate('MyTabsAdmin')
+      }
+
       /**if not return Alert*/
       else {
         Alert.alert(ERROR_MESSAGES.LOGIN);
       }
       console.log(foundUser);
-      console.log(nomm);
       return foundUser;
-      /** Catching Errors */
-    } catch (error) {
+    } 
+
+    /** Catching Errors */
+    catch (error) {
       console.error('Erreur lors de la vérification de l utilisateur :', error);
       Alert.alert(ERROR_MESSAGES.LOGIN);
       return null;
     }
   };
-  
+
+
   /** While Submiting */
   const handleSubmit = async () => {
+
     /**Verificate email */
     if (!isValidEmail(email)) {
       Alert.alert(ERROR_MESSAGES.EMAIL);
@@ -102,7 +104,7 @@ const LoginScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Adresse e-mail"
           keyboardType="email-address"
 
@@ -112,7 +114,7 @@ const LoginScreen = ({ navigation }) => {
         />
         
         <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Mot de passe"
           secureTextEntry={true}
           
@@ -127,17 +129,11 @@ const LoginScreen = ({ navigation }) => {
           onPress={handleSubmit}
         />
       </View>
-      
-      <Button
-        /**Button to navigate to the page wehre we can do our inscription  */
-        title="S'inscrire"
-        onPress={() => navigation.navigate('Inscription')}
-      />
     </View>
   );
 };
 
-export default LoginScreen;
-
+/**exportations */
+export default LoginAdminScreen;
 export { nomm };
 export { prenomm };

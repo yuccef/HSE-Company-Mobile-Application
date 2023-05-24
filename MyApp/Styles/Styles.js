@@ -6,6 +6,11 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
+  },
+  inputContainer: {
+    width: '80%',
+    alignItems: 'center',
   },
   login: {
     flex: 1,
@@ -40,6 +45,14 @@ export const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  inputt: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    padding: 10,
+    marginVertical: 10,
+    width: '100%',
   },
   login: {
     flex: 1,

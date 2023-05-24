@@ -1,12 +1,15 @@
 /**Import parametres*/
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert } from 'react-native';
-import { styles } from '../Styles/style';
 
-let nomm,prenomm;
+import { styles } from './../../Styles/Styles';
+
+
+let nomm, prenomm;
 
 /**URLs of Databases */
-const API_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/admin/sign";
+const API_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/worker";
+
 
 /**ERRORS*/
 const ERROR_MESSAGES = {
@@ -27,7 +30,7 @@ const isValidPassword = (password) => {
 };
 
 /**LoginScreen Class where we put our email and Password  */
-const LoginAdminScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }) => {
 
   /**Parametres*/
   const [email, setEmail] = useState('');
@@ -38,37 +41,30 @@ const LoginAdminScreen = ({ navigation }) => {
     setEmail(text);
   };
 
-
   /**Initialize email*/
   const handlePasswordChange = (text) => {
     setPassword(text);
   };
 
-
-
   /**The function to  Verify if this email and password exist in the DataBase( on the server created in Backend) */
   const checkUser = async (email, password) => {
-    
     try {
       const response = await fetch(API_URL);
       const users = await response.json();
       const foundUser = users.find(user => user.email === email && user.password === password);/**The verificaton is here  */
-       
       /**if its TRUE we navigate to an other page*/
       if (foundUser) {
         nomm= foundUser.nom;
         prenomm= foundUser.prenom;
-        navigation.navigate('MyTabsAdmin')
+        navigation.navigate('MyTabs')
             }
       /**if not return Alert*/
       else {
         Alert.alert(ERROR_MESSAGES.LOGIN);
       }
       console.log(foundUser);
-
+      console.log(nomm);
       return foundUser;
-
-
       /** Catching Errors */
     } catch (error) {
       console.error('Erreur lors de la vérification de l utilisateur :', error);
@@ -76,12 +72,9 @@ const LoginAdminScreen = ({ navigation }) => {
       return null;
     }
   };
-
-
-
+  
   /** While Submiting */
   const handleSubmit = async () => {
-
     /**Verificate email */
     if (!isValidEmail(email)) {
       Alert.alert(ERROR_MESSAGES.EMAIL);
@@ -103,14 +96,12 @@ const LoginAdminScreen = ({ navigation }) => {
     }
   };
 
-
   /**Style and Front (page) */
-
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Adresse e-mail"
           keyboardType="email-address"
 
@@ -120,7 +111,7 @@ const LoginAdminScreen = ({ navigation }) => {
         />
         
         <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Mot de passe"
           secureTextEntry={true}
           
@@ -135,11 +126,18 @@ const LoginAdminScreen = ({ navigation }) => {
           onPress={handleSubmit}
         />
       </View>
+      
+      <Button
+        /**Button to navigate to the page wehre we can do our inscription  */
+        title="S'inscrire"
+        onPress={() => navigation.navigate('Inscription')}
+      />
     </View>
   );
 };
 
-export default LoginAdminScreen;
 
+
+export default LoginScreen;
 export { nomm };
 export { prenomm };

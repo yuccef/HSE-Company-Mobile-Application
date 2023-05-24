@@ -1,8 +1,8 @@
 import {  Text, View, } from 'react-native';
-import {styles} from '../../../Styles/Styles'
+import {styles} from '../../Styles/Styles'
 import button_risk from './button_risk';
-import { nomm } from '../../LoginScreen';
-import { prenomm } from '../../LoginScreen';
+import { nomm } from '../Login_InscriptionScreens/LoginScreenWorker';
+import { prenomm } from '../Login_InscriptionScreens/LoginScreenWorker';
 
 
 export default function HomeScreen({navigation}) {

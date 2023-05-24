@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Text, View, TouchableOpacity, TextInput, Keyboard} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
-import {styles} from '../../../Styles/Styles'
+import {styles} from '../../Styles/Styles'
 
 
 import { Camera } from 'expo-camera';
@@ -10,8 +10,8 @@ import * as Permissions from 'expo-camera';
 import * as Media_permission from 'expo-media-library'
 import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
 
-import { nomm } from '../../LoginScreen';
-import { prenomm } from '../../LoginScreen';
+import { nomm } from '../Login_InscriptionScreens/LoginScreenWorker';
+import { prenomm } from '../Login_InscriptionScreens/LoginScreenWorker';
 
 const SERVER_URL = 'https://bbf0-185-109-254-166.ngrok-free.app/api/worker/report'
 

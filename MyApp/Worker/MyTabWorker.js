@@ -1,18 +1,19 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AntDesign, Entypo, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import {Text } from 'react-native';
 
 
-import HomeScreen from './HomeTabAdmin'
-import HSE from '../Employe/Tabs/HSE_Tab'
-import ReportScreenAdmin from './OldReportTabAdmin'
-import SettingsScreen from '../Employe/Tabs/SettingTab'
+import HomeScreen from './HomeTabWorker/HomeScreen'
+import HSE from '../HSE_Tab'
+import OldReportScreen from './ReportsWorker'
+import SettingsScreen from '../SettingTab'
+import {Mycamera} from './SendReportTab/SendReport' 
 
 const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="Accueil">
       <Tab.Screen 
         name="Accueil"
         component={HomeScreen}
@@ -27,7 +28,7 @@ export default function MyTabs() {
       />
       <Tab.Screen
         name="Signalements"
-        component={ReportScreenAdmin}
+        component={OldReportScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text style={{ color: focused ? 'green' : color, fontSize: 10 }}>Signalements</Text>
@@ -40,7 +41,21 @@ export default function MyTabs() {
             inactiveTintColor: 'gray',
           },
         }}/>
-
+      <Tab.Screen
+        name="Signaler un risque"
+        component={Mycamera}
+        options={{
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ textAlign: 'center', color: focused ? 'red' : color, fontSize: 8 }}>Signaler un risque</Text>
+          ),
+          tabBarIcon: ({ focused, color, size }) => (
+              <AntDesign name="warning" size={size} color={focused ? 'red' : color} />
+          ),
+          tabBarOptions: {
+            activeTintColor: 'red',
+            inactiveTintColor: 'gray',
+          },
+      }}/>
       <Tab.Screen
         name="HSE"
         component={HSE}

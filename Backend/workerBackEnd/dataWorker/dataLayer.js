@@ -2,10 +2,6 @@ const fs = require("fs");
 const fichier = "./Backend/workerBackEnd/dataWorker/signin.json"; 
 const fichierr = "./Backend/workerBackEnd/dataWorker/report.json"; 
 
-
-
-
-
 /**dataLayer is a class that contains several methods for database manipulation */
 let dataLayer = {
 
@@ -23,20 +19,7 @@ let dataLayer = {
         });
     },
 
-    addComment: function (data){
-        const users = fs.readFileSync(fichierr); 
-        const tab= JSON.parse(users);
-        tab.push(data);
-        var newdata = JSON.stringify(tab);
-        fs.writeFile("./Backend/workerBackEnd/dataWorker/comments.json", newdata, err => {
-            // error checking
-            if(err) throw err;
-            
-            console.log("Commentaire ajouté");
-        });
-    },
-
-
+    /**method to add a report  */
     addReport: function (data){
         const users = fs.readFileSync(fichierr); 
         const tab= JSON.parse(users);
@@ -48,6 +31,8 @@ let dataLayer = {
             console.log("Signalement ajouté");
         });
     },
+
+    /**method to del a comment */
     Del : function(data){
         //get data from json file
         const users = fs.readFileSync(fichierr);

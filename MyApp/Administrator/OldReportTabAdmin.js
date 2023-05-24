@@ -5,11 +5,15 @@ import { LinearGradient } from 'expo-linear-gradient';
 const API_REPORT_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/worker/report";
 const API_ANSWER_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/admin/answers";
 
-import { nomm } from './LoginAdminScreen';
-import { prenomm } from './LoginAdminScreen';
+
+import { nomm } from './LoginScreenAdmin';
+import { prenomm } from './LoginScreenAdmin';
 
 const OldReportScreen = ({ navigation }) => {
   const [reportData, setReportData] = useState([]);
+
+
+
 
   useEffect(() => {
     fetch(API_REPORT_URL)
@@ -33,12 +37,15 @@ const OldReportScreen = ({ navigation }) => {
     setNewComment(text);
   };
 
+  
   const handleSendComment = (report) => {
     // envoyer le commentaire
     console.log("Envoyer le commentaire:", newComment, " pour le signalement: ", report);
     // remettre l'état initial
     setExpandedIndex(null);
     setNewComment("");
+
+  
     const reportanswer = {
       nomWorker: report.nom,
       prenomWorker: report.prenom,
@@ -49,6 +56,7 @@ const OldReportScreen = ({ navigation }) => {
       answer: newComment,
       état: report.checked,
     };
+
     fetch(API_ANSWER_URL, {
       method: 'POST',
       headers: {
@@ -114,6 +122,7 @@ const OldReportScreen = ({ navigation }) => {
                 }}
               >
                 <Text style ={styles.buttonText}>
+
 {report.checked ? "Terminé" : "En cours"}
 </Text>
 </TouchableOpacity>

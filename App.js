@@ -2,14 +2,15 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import InscriptionScreen from './MyApp/Employe/Inscription'
-import {ImageScreen}  from './MyApp/Employe/Tabs/ReportTab/ImageScreen'
-import MyTabs from './MyApp/Employe/MyTabs';
-import MyTabsAdmin from './MyApp/Administrateur/MyTabsAdmin';
+import InscriptionScreen from './MyApp/Worker/Login_InscriptionScreens/InscriptionWorker'
+import {ImageScreen}  from './MyApp/Worker/SendReportTab/PictureOfTheReport'
 
-import LoginScreen from './MyApp/Employe/LoginScreen';
-import LoginAdminScreen from './MyApp/Administrateur/LoginAdminScreen';
-import Chose from './MyApp/Chose'
+import MyTabs from './MyApp/Worker/MyTabWorker';
+import MyTabsAdmin from './MyApp/Administrator/MyTabsAdmin';
+
+import LoginScreen from './MyApp/Worker/Login_InscriptionScreens/LoginScreenWorker';
+import LoginAdminScreen from './MyApp/Administrator/LoginScreenAdmin';
+import Chose from './MyApp/ChoseNavigation'
 
 const Stack = createNativeStackNavigator();
 

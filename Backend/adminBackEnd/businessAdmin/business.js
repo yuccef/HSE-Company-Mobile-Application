@@ -10,6 +10,7 @@ const business = {
         return dataL.addUser(data);
     },
 
+    /**To Add an answer */
     AddAnswer :function(data)  {
         console.log(data);
         return dataL.addAnswer(data);
