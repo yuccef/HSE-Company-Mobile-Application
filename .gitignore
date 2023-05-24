@@ -1,18 +1,14 @@
 node_modules/
 .expo/
-
-
 assets/
-*.png
-*.jpg
 
-*.lock
-*.log
-yarn-error.log/
+
+
+
+babel.config.js/
 yarn.lock/
 package-lock.json/
-
-
+yarn-error.log/
 
 
 npm-debug.*
