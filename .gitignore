@@ -1,7 +1,19 @@
 node_modules/
 .expo/
-.assets/
-dist/
+
+
+assets/
+*.png
+*.jpg
+
+*.lock
+*.log
+yarn-error.log/
+yarn.lock/
+package-lock.json/
+
+
+
 
 npm-debug.*
 *.jks
