@@ -123,32 +123,32 @@ const InscriptionScreen = ({ navigation }) => {
     <View style={styles.container}>
     <View style={styles.inputContainer}>
     <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Nom"
           value={nom}
           onChangeText={handleNomChange}
         />
         <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Prenom"
           value={prenom}
           onChangeText={handlePrenomChange}
         />
         <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Localisation"
           value={local}
           onChangeText={handleLocalChange}
         />
     <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Adresse e-mail"
           keyboardType="email-address"
           value={email}
           onChangeText={handleEmailChange}
         />
     <TextInput
-          style={styles.input}
+          style={styles.inputt}
           placeholder="Mot de passe"
           secureTextEntry={true}
           value={password}

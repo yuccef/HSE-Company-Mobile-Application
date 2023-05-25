@@ -181,7 +181,7 @@ export const styles = StyleSheet.create({
   text_goto_image: {
     color: '#bbb',
     alignSelf: 'center',
-    bottom: -20,
+    bottom: 16,
   },
   container1: {
     flex: 1,
