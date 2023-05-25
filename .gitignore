@@ -4,11 +4,11 @@ assets/
 
 
 
+babel.config.js
+yarn.lock
+package-lock.json
+yarn-error.log
 
-babel.config.js/
-yarn.lock/
-package-lock.json/
-yarn-error.log/
 
 
 npm-debug.*
