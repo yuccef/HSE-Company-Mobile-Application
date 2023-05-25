@@ -206,4 +206,26 @@ export const styles = StyleSheet.create({
     marginLeft: 20,
     color: '#696969',
   },
+
+  containerHome: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleHome: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 50,
+    textAlign: 'center',
+    color: '#483d8b',
+  },
+
+DescriptionHome: {
+    fontSize: 16,
+    color: '#666666',
+    marginBottom: 30,
+  },
 });

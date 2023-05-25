@@ -73,7 +73,7 @@ const OldReportScreen = () => {
                   Administrateur : {report.nom} {report.prenom}
                 </Text>
                 <Text style={styles.reportNameWorker}>
-                  Ouvrier : {report.nomWroker} {report.prenomWorker}
+                  Ouvrier : {report.nomWorker} {report.prenomWorker}
                 </Text>
                 <Text style={styles.reportCategorie}>
                   Categorie : {report.categorieWorker}
