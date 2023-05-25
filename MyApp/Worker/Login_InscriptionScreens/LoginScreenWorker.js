@@ -1,7 +1,7 @@
 /**Import parametres*/
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert } from 'react-native';
-
+import { sha256 } from 'js-sha256';
 import { styles } from './../../Styles/Styles';
 
 
@@ -45,56 +45,63 @@ const LoginScreen = ({ navigation }) => {
   const handlePasswordChange = (text) => {
     setPassword(text);
   };
+  
 
-  /**The function to  Verify if this email and password exist in the DataBase( on the server created in Backend) */
+  
+  /**The function to  Verify if this email and password exist in the DataBase (on the server created in Backend) */
   const checkUser = async (email, password) => {
     try {
       const response = await fetch(API_URL);
       const users = await response.json();
-      const foundUser = users.find(user => user.email === email && user.password === password);/**The verificaton is here  */
-      /**if its TRUE we navigate to an other page*/
+      const foundUser = users.find(
+        (user) => user.email === email && user.password === sha256(password).toString()
+      );/**The verification is here */
+      /**if it's TRUE, we navigate to another page */
       if (foundUser) {
-        nomm= foundUser.nom;
-        prenomm= foundUser.prenom;
-        navigation.navigate('MyTabs')
-            }
-      /**if not return Alert*/
+        nomm = foundUser.nom;
+        prenomm = foundUser.prenom;
+        navigation.navigate('MyTabs');
+      }
+      /**if not, return Alert */
       else {
         Alert.alert(ERROR_MESSAGES.LOGIN);
       }
       console.log(foundUser);
       console.log(nomm);
       return foundUser;
-      /** Catching Errors */
     } catch (error) {
-      console.error('Erreur lors de la vérification de l utilisateur :', error);
+      console.error('Erreur lors de la vérification de l\'utilisateur :', error);
       Alert.alert(ERROR_MESSAGES.LOGIN);
       return null;
     }
   };
   
-  /** While Submiting */
+  /** While Submitting */
   const handleSubmit = async () => {
-    /**Verificate email */
+    /**Verify email */
     if (!isValidEmail(email)) {
       Alert.alert(ERROR_MESSAGES.EMAIL);
       return;
     }
-
-   /**Verificate password */
+  
+    /**Verify password */
     if (!isValidPassword(password)) {
       Alert.alert(ERROR_MESSAGES.PASSWORD);
       return;
     }
   
+    /**Calculate password hash */
+
+
     /**Check the existence of this Data */
     const foundUser = await checkUser(email, password);
-    
+  
     /**Error case */
     if (!foundUser) {
       console.warn(ERROR_MESSAGES.LOGIN);
     }
   };
+  
 
   /**Style and Front (page) */
   return (

@@ -1,9 +1,8 @@
 /**Import parametres*/
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert } from 'react-native';
-
+import { sha256 } from 'js-sha256';
 import { styles } from './../../Styles/Styles';
-
 /**URLs of Databases (workers) */
 const API_URL = "https://bbf0-185-109-254-166.ngrok-free.app/api/worker";
 
@@ -78,6 +77,8 @@ const InscriptionScreen = ({ navigation }) => {
       }
     };
   
+   
+
   /**While Submiting */
     const handleSubmit = async () => {
   
@@ -99,7 +100,7 @@ const InscriptionScreen = ({ navigation }) => {
         prenom: prenom,
         local: local,
         email: email,
-        password: password
+        password: sha256(password).toString()
       };
   
       console.log(user);
