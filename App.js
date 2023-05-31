@@ -10,7 +10,9 @@ import MyTabsAdmin from './MyApp/Administrator/MyTabsAdmin';
 
 import LoginScreen from './MyApp/Worker/Login_InscriptionScreens/LoginScreenWorker';
 import LoginAdminScreen from './MyApp/Administrator/LoginScreenAdmin';
+
 import Chose from './MyApp/ChoseNavigation'
+import logo from './MyApp/logo'
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +20,8 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen options={{headerLeft: null}} name="Qui êtes-vous ?" component={Chose} />
+        <Stack.Screen options={{headerShown: false}} name="logo" component={logo} />
+        <Stack.Screen options={{headerShown: false}} name="Qui êtes-vous ?" component={Chose} />
         <Stack.Screen options={{headerLeft: null}} name="LoginEmploye" component={LoginScreen} />
         <Stack.Screen options={{headerLeft: null}} name="LoginAdmin" component={LoginAdminScreen} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} />
