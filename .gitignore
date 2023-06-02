@@ -3,7 +3,8 @@ node_modules/
 assets/
 MyApp/
 
-
+app.json
+package.json
 babel.config.js
 yarn.lock
 package-lock.json
