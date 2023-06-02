@@ -13,7 +13,8 @@ import LoginAdminScreen from './MyApp/Administrator/LoginScreenAdmin';
 
 import Chose from './MyApp/ChoseNavigation'
 import logo from './MyApp/logo'
-import skeleton from './MyApp/skeleton'
+import skeletonWorker from './MyApp/Skeletons/skeletonHomeWorker'
+import skeletonAdmin from './MyApp/Skeletons/skeletonHomeAdmin'
 
 
 const Stack = createNativeStackNavigator();
@@ -25,7 +26,8 @@ function App() {
 
     
         <Stack.Screen options={{headerShown: false}} name="logo" component={logo} />
-        <Stack.Screen options={{headerShown: false}} name="skeleton" component={skeleton} />
+        <Stack.Screen options={{headerShown: false}} name="skeletonWorker" component={skeletonWorker} />
+        <Stack.Screen options={{headerShown: false}} name="skeletonAdmin" component={skeletonAdmin} />
         <Stack.Screen options={{headerShown: false}} name="Qui êtes-vous ?" component={Chose} />
         <Stack.Screen options={{headerLeft: null}} name="LoginEmploye" component={LoginScreen} />
         <Stack.Screen options={{headerLeft: null}} name="LoginAdmin" component={LoginAdminScreen} />
